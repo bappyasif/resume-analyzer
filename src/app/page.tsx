@@ -3,6 +3,7 @@ import Link from "next/link";
 import { LatestPost } from "~/app/_components/post";
 import { auth } from "~/server/auth";
 import { api, HydrateClient } from "~/trpc/server";
+import PdfParserClient from "./_components/pdfParser";
 
 export default async function Home() {
   const hello = await api.post.hello({ text: "from tRPC" });
@@ -62,6 +63,14 @@ export default async function Home() {
           </div>
 
           {session?.user && <LatestPost />}
+          <PdfParserClient />
+          {/* <input type="file" name="file" id="" onChange={async (e) => {
+            if (e.target.files?.length) {
+            const res = await api.pdfParse.uploadPdf({ file: e.target.files[0]! })
+            console.log(res, "response")
+            }
+          }} /> */}
+          {/* <button>Upload</button> */}
         </div>
       </main>
     </HydrateClient>

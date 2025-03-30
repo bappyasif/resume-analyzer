@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { api } from "~/trpc/react";
+import { AnalyzeParsedPdf } from "./AnalysedParsedPdf";
 
 export function PdfUploader() {
     const [pdfText, setPdfText] = useState<string | null>(null);
@@ -15,6 +16,7 @@ export function PdfUploader() {
 
         const reader = new FileReader();
         reader.readAsDataURL(file);
+
         reader.onload = () => {
             const base64String = reader.result?.toString().split(",")[1];
             if (!base64String) return;
@@ -39,10 +41,11 @@ export function PdfUploader() {
         <div>
             <input type="file" accept="application/pdf" onChange={handleFileChange} />
             {isLoading && <p>Loading...</p>}
+            {pdfText && <AnalyzeParsedPdf pdfText={pdfText} />}
             {pdfText && (
                 <div>
                     <h2>Parsed PDF Text:</h2>
-                    <p>{pdfText}</p>
+                    {/* <p>{pdfText}</p> */}
                     <h2>Info:</h2>
                     <pre>{JSON.stringify(pdfInfo, null, 2)}</pre>
                     <h2>Number of pages:</h2>

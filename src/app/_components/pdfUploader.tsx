@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import { api } from "~/trpc/react";
+import { AnalyzeParsedPdf } from "./analyzeParsedPdf";
+import { ResumeSentimentAnalyzer } from "./resumeSentimentAnalyser";
+import { ResumeClassifier } from "./resumeClassifier";
 
 export function PdfUploader() {
     const [pdfText, setPdfText] = useState<string | null>(null);
@@ -39,6 +42,9 @@ export function PdfUploader() {
         <div>
             <input type="file" accept="application/pdf" onChange={handleFileChange} />
             {isLoading && <p>Loading...</p>}
+            {pdfText && <ResumeClassifier resumeText={pdfText} />}
+            {/* {pdfText && <ResumeSentimentAnalyzer resumeText={pdfText} />} */}
+            {pdfText && <AnalyzeParsedPdf pdfText={pdfText} />}
             {pdfText && (
                 <div>
                     <h2>Parsed PDF Text:</h2>

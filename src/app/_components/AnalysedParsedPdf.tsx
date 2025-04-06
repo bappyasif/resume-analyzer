@@ -1,5 +1,8 @@
 // import { ResumeEntityRecogniser } from "./ResumeEntityRecogniser";
 
+import { ClassifierDemo } from "./classifierDemo";
+import { ClassifierTest } from "./classifierTest";
+
 export const AnalyzeParsedPdf = ({pdfText}: {pdfText: string}) => {
     return (
         <div>
@@ -7,6 +10,8 @@ export const AnalyzeParsedPdf = ({pdfText}: {pdfText: string}) => {
             {/* <ResumeEntityRecogniser 
                 pdfText={pdfText} 
             /> */}
+            <ClassifierTest text={pdfText} />
+            {/* <ClassifierDemo resumeText={pdfText} /> */}
         </div>
     )
 };

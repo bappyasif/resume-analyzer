@@ -4,6 +4,8 @@ import { LatestPost } from "~/app/_components/post";
 import { auth } from "~/server/auth";
 import { api, HydrateClient } from "~/trpc/server";
 import {PdfUploader} from "./_components/pdfUploader";
+import { ClassifierDemo } from "./_components/ClassifierDemo";
+import { ClassifierTest } from "./_components/classifierTest";
 
 export default async function Home() {
   const hello = await api.post.hello({ text: "from tRPC" });
@@ -65,6 +67,9 @@ export default async function Home() {
           {session?.user && <LatestPost />}
 
           <PdfUploader />
+
+          {/* <ClassifierDemo /> */}
+          <ClassifierTest text="test" />
         </div>
       </main>
     </HydrateClient>

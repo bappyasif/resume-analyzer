@@ -1,6 +1,4 @@
 // import { ResumeEntityRecogniser } from "./ResumeEntityRecogniser";
-
-import { ClassifierDemo } from "./classifierDemo";
 import { ClassifierTest } from "./classifierTest";
 
 export const AnalyzeParsedPdf = ({pdfText}: {pdfText: string}) => {

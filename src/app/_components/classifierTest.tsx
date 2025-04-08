@@ -88,12 +88,32 @@ export const ClassifierTest = ({ text }: { text: string }) => {
     // }
 
     // this is functioning but not really in way i wanted
-    const runForEntityRecognition = async (text: string) => {
-        // const classifier = await pipeline('token-classification', 'Xenova/bert-base-NER');
-        const classifier = await pipeline('token-classification', 'Xenova/bert-base-uncased');
-        // const classifier = await pipeline('token-classification', 'DistilBERT-NER'); // this requires hf api key
+    // const runForEntityRecognition = async (text: string) => {
+    //     // const classifier = await pipeline('token-classification', 'Xenova/bert-base-NER');
+    //     const classifier = await pipeline('token-classification', 'Xenova/bert-base-uncased');
+    //     // const classifier = await pipeline('token-classification', 'DistilBERT-NER'); // this requires hf api key
 
-        // const classifier = await pipeline('token-classification', 'Xenova/bert-base-multilingual-uncased-sentiment');
+    //     // const classifier = await pipeline('token-classification', 'Xenova/bert-base-multilingual-uncased-sentiment');
+    //     const output = await classifier(text, { ignore_labels: [] }); // this produces result which is not what i want
+    //     // const output = await classifier(text); // this produces no result!!
+    //     console.log(output, "!!entity--result!!");
+
+    //     const keywords: string[] = [];
+    //     output.forEach((entity: any) => {
+    //         // if (!entity?.score) return;
+    //         if (entity?.score > 0.5) {
+    //             keywords.push(entity.word);
+    //         }
+    //     });
+    //     console.log(keywords, "!!keywords!!");
+    // }
+
+    const runForEntityRecognition = async (text: string) => {
+        const classifier = await pipeline('token-classification', 'Xenova/bert-base-NER');
+        // const classifier = await pipeline('token-classification', 'Xenova/distilbert-base-uncased-finetuned-sst-2-english');
+        // const classifier = await pipeline('token-classification', 'deepset/bert-base-cased-squad2');
+        // const output = await classifier("Asifuzzaman Bappy Fullstack Developer", { ignore_labels: [] });
+
         const output = await classifier(text, { ignore_labels: [] }); // this produces result which is not what i want
         // const output = await classifier(text); // this produces no result!!
         console.log(output, "!!entity--result!!");

@@ -11,7 +11,7 @@ export const AnalyzeParsedPdf = ({pdfText}: {pdfText: string}) => {
                 pdfText={pdfText} 
             /> */}
             <ClassifierTest text={pdfText} />
-            {/* <ClassifierDemo resumeText={pdfText} /> */}
+            <ClassifierDemo resumeText={pdfText} />
         </div>
     )
 };

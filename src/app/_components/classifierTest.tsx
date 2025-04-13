@@ -128,14 +128,29 @@ export const ClassifierTest = ({ text }: { text: string }) => {
         console.log(keywords, "!!keywords!!");
     }
 
+    const anotherNER = async () => {
+        console.log("anotherNER called!!");
+        // const classifier = await pipeline('token-classification', 'Xenova/distilbert-base-uncased-finetuned-sst-2-english');
+        // const output = await classifier(text, { ignore_labels: [] });
+        // console.log(output, "!!entity--result!!");
+        const classifier = await pipeline('token-classification', 'Xenova/bert-base-NER');
+        // const classifier = await pipeline('token-classification', 'dslim/bert-base-NER-uncased'); // they reuire some json file which stays missing for some reason unknown to me..
+        // const output = await classifier('My name is Sarah and I live in London');
+        // const output = await classifier(text);
+        const output = await classifier(text, { ignore_labels: [] });
+        console.log(output, "!!entity--result!!", text);
+    }
+
     useEffect(() => {
         // runForText(text);
         // runForClassify(text);
-        runForEntityRecognition(text);
+        // runForEntityRecognition(text);
+        anotherNER();
     }, [text])
 
     useEffect(() => {
-        runOnce();
+        anotherNER();
+        // runOnce();
         // runForEntityRecognition(text);
     }, [])
 

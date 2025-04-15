@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useEffect } from 'react'
-import { pipeline } from "@huggingface/transformers"
+// import { pipeline } from "@huggingface/transformers"
+import { pipeline } from "@xenova/transformers";
 
 // type Entity = {
 //     entity: string;

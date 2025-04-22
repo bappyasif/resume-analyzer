@@ -1,0 +1,12 @@
+{
+  "do_lower_case": false,
+  "tokenizer_class": "BertTokenizer",
+  "model_max_length": 512,
+  "normalizer": {
+    "type": "BertNormalizer",
+    "clean_text": true,
+    "handle_chinese_chars": true,
+    "strip_accents": null,
+    "lowercase": true
+  }
+}

@@ -1,5 +1,6 @@
 import { pipeline } from '@huggingface/transformers';
 import React, { useEffect, useState } from 'react'
+import { groupEntities } from '~/lib/groupEntities';
 import { runClientNER } from '~/lib/nerClientRunner';
 // import { runClientNER } from '~/lib/nerClient';
 
@@ -14,6 +15,8 @@ export function NerTest({ parsedText }: { parsedText: string }) {
       const ner = await runClientNER(text);
       console.log(ner, "NERNER");
       setEntities(ner);
+    } catch (error) {
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -22,6 +25,8 @@ export function NerTest({ parsedText }: { parsedText: string }) {
   useEffect(() => {
     runClientNER("I'm Bappy from Dhaka. I worked at Google.").then((result) => {
       console.log(result, "result!!");
+      const entitiesResultGroupped = groupEntities(entities)
+      console.log(entitiesResultGroupped, "entitiesResultGroupped!!");
     }).catch((error) => {
       console.log(error, "error!!");
     })

@@ -1,5 +1,6 @@
 // import { ResumeEntityRecogniser } from "./ResumeEntityRecogniser";
 import { ClassifierTest } from "./classifierTest";
+import NERAnalyzer from "./NerAnalyzer";
 import { NerTest } from "./nerTest";
 
 export const AnalyzeParsedPdf = ({pdfText}: {pdfText: string}) => {
@@ -11,7 +12,8 @@ export const AnalyzeParsedPdf = ({pdfText}: {pdfText: string}) => {
             /> */}
             {/* <ClassifierTest text={pdfText} /> */}
             {/* <ClassifierDemo resumeText={pdfText} /> */}
-            <NerTest parsedText={pdfText} />
+            {/* <NerTest parsedText={pdfText} /> */}
+            <NERAnalyzer parsedText={pdfText} />
         </div>
     )
 };

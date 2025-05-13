@@ -20,6 +20,8 @@ export default function NERAnalyzer({parsedText}: {parsedText: string}) {
     }
   };
 
+  console.log(result, "RESULT")
+
   return (
     <div className="p-4 space-y-4">
       <textarea
@@ -38,7 +40,18 @@ export default function NERAnalyzer({parsedText}: {parsedText: string}) {
       </button>
 
       <div className="mt-4">
-        {result.map((entity, idx) => (
+        {/* {
+          if (Array.isArray(result)) {
+            // This is from /analyze
+            result.map((r) => { ... });
+          } else {
+            // This is from /deep-structured-analyze
+            // Access `skills`, `experience`, etc
+            result.skills.map((skill) => { ... });
+            result.experience.map((exp) => { ... });
+          }
+        } */}
+        {Array.isArray(result) && result.map((entity, idx) => (
           <div key={idx} className="text-sm text-gray-800">
             <strong>{entity.entity_group}</strong>: {entity.word}
           </div>

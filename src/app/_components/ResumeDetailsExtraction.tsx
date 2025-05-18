@@ -4,7 +4,7 @@ import { api } from '~/trpc/react';
 export const ResumeDetailsExtraction = ({pdfText}: {pdfText: string}) => {
     const {mutate, data} = api.resume.extractDetails.useMutation({
         onSuccess: (data) => {
-            console.log("data extraction is complete", data, data?.output);
+            console.log("data extraction is complete", data);
         },
         onError: (error) => {
             console.log(error);
@@ -48,23 +48,67 @@ export const ResumeDetailsExtraction = ({pdfText}: {pdfText: string}) => {
                 }
                 </div>
 
-                <div style={{marginBottom: "1rem"}}>
-                    <p>Certifications:  </p>
+                <div>
+                    <p>Education</p>
                     {
-                    data?.certifications?.map((cert: any, index: number) => (
-                        <DisplayText text={cert} key={index} />
-                    ))
-                }
-                </div>
-
-                <div style={{marginBottom: "1rem"}}>
-                    <p>Skills</p>
-                    {
-                        data?.skills?.map((skill: any, index: number) => (
-                            <DisplayText text={skill} key={index} />
+                        data?.education?.map((edu: any, index: number) => (
+                            <div key={index} style={{marginBottom: "1rem"}}>
+                                <p>{edu.degree}</p>
+                                <p>{edu.institution}</p>
+                                <p>{edu.dates}</p>
+                            </div>
                         ))
                     }
                 </div>
+
+                {
+                    data?.certifications && (
+                        <ResumeSection label='Certifications' content={data?.certifications} />
+                    )   
+                }
+
+                {
+                    data?.skills && (
+                        <ResumeSection label='Skills' content={data?.skills} />
+                    )
+                }
+
+                {
+                    data?.projects && (
+                        <ResumeSection label='Projects' content={data?.projects} />
+                    )
+                }
+
+                {
+                    data?.awards?.length && (
+                        <ResumeSection label='Awards' content={data?.awards} />
+                    )
+                }
+
+                {
+                    data?.languages && (
+                        <ResumeSection label='Languages' content={data?.languages} />
+                    )
+                }
+
+                {
+                    data?.interests && (
+                        <ResumeSection label='Interests' content={data?.interests} />
+                    )
+                }
+
+                {
+                    data?.references && (
+                        <ResumeSection label='References' content={data?.references} />
+                    )
+                }
+
+                {
+                    data?.achievements && (
+                        <ResumeSection label='Achievements' content={data?.achievements} />
+                    )
+                }
+                
                 {/* <p>Summary: {Data?.summary}</p>
                 <p>Experience: {Data?.experience}</p>
                 <p>Skills: {Data?.skills}</p>
@@ -83,6 +127,21 @@ export const ResumeDetailsExtraction = ({pdfText}: {pdfText: string}) => {
             {extractMutation.isPending ? 'Extracting...' : 'Re-Extract Details'}
         </button> */}
     </div>
+    )
+}
+
+const ResumeSection = ({label, content}: {label: string, content: string[]}) => {
+    if (!content || content.length === 0) return null;
+
+    return (
+        <div>
+            <h3>{label}</h3>
+            <ul>
+                {content.map((item, index) => (
+                    <li key={index}>{item}</li>
+                ))}
+            </ul>
+        </div>
     )
 }
 

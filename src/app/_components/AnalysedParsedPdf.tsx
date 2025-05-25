@@ -1,7 +1,7 @@
 // import { ResumeEntityRecogniser } from "./ResumeEntityRecogniser";
-import { ClassifierTest } from "./classifierTest";
-import NERAnalyzer from "./NerAnalyzer";
-import { NerTest } from "./nerTest";
+// import { ClassifierTest } from "./classifierTest";
+// import NERAnalyzer from "./NerAnalyzer";
+// import { NerTest } from "./nerTest";
 import { ResumeDetailsExtraction } from "./ResumeDetailsExtraction";
 import { ResumeFeedback } from "./ResumeFeedback";
 

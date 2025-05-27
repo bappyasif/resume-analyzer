@@ -3,6 +3,8 @@
 import React, { useEffect } from 'react'
 import { useToResumeDataExtraction } from '../_hooks/useToResumeDataExtraction'
 import { useAppCtx } from '~/contexts/app';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export const DataSection = ({ pdfText }: { pdfText: string }) => {
     const { state } = useAppCtx();
@@ -10,7 +12,7 @@ export const DataSection = ({ pdfText }: { pdfText: string }) => {
     const { resume } = state;
     const { analysis } = resume;
 
-    const { data } = useToResumeDataExtraction(pdfText);
+    const { data, error, isPending } = useToResumeDataExtraction(pdfText);
     // const {data} = analysis || useToResumeDataExtraction(pdfText);
 
     // useEffect(() => {
@@ -19,9 +21,25 @@ export const DataSection = ({ pdfText }: { pdfText: string }) => {
     //     }
     // }, [data]);
 
+    // const router = useRouter();
+
+    // useEffect(() => {
+    //     if (data) {
+    //         router.push("/resume/feedback");
+    //     }
+    // }, [data]);
+
     return (
         <div>
             <h3>Extracted Details (via tRPC):</h3>
+            {isPending && <p className='text-center text-white text-2xl font-bold'>Extracting details...</p>}
+            {error && <p>Error: {error.message}</p>}
+            {!(analysis || data) && <p>No data available</p>}
+
+            {(analysis || data) && (
+                <Link href="/resume/feedback" className='text-center text-white text-2xl font-bold'>View Feedback</Link>
+            )}
+
             {(analysis || data) ? (
                 <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                     <p>Name: {(analysis || data)?.name}</p>

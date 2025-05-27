@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
+import navigate, { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useAppCtx } from "~/contexts/app";
 import { api } from "~/trpc/react";
 // import { AnalyzeParsedPdf } from "./AnalysedParsedPdf";
@@ -9,7 +11,7 @@ export function PdfUploader() {
     const [pdfText, setPdfText] = useState<string | null>(null);
     const [pdfInfo, setPdfInfo] = useState<any | null>(null);
     const [numPages, setNumPages] = useState<number | null>(null);
-    const { mutate, isPending: isLoading } = api.pdf.parsePdf.useMutation();
+    const { mutate, isPending: isLoading, error } = api.pdf.parsePdf.useMutation();
 
     const {dispatch} = useAppCtx()
 
@@ -41,10 +43,27 @@ export function PdfUploader() {
         };
     };
 
+    const router = useRouter();
+
+
+    const handleNavigate = () => {
+        // navigate.push("/resume/analysis")
+        // navigate.useRouter().push("/resume-analysis");
+        router.push("/resume/analysis");
+    }
+
+    useEffect(() => {
+        if (!pdfText) return;
+       handleNavigate()
+    }, [pdfText]);
+
+
     return (
         <div>
             <input type="file" accept="application/pdf" onChange={handleFileChange} />
             {isLoading && <p>Loading...</p>}
+            {error && <p>Error: {error.message}</p>}
+            {/* <Link */}
             {/* {pdfText && <AnalyzeParsedPdf pdfText={pdfText} />} */}
             {pdfText && (
                 <div>

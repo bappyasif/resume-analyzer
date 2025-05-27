@@ -8,7 +8,7 @@ export const useToResumeDataExtraction = (pdfText: string) => {
     const {resume} = state;
     const {analysis} = resume;
 
-    const { mutate, data } = api.resume.extractDetails.useMutation({
+    const { mutate, data, isPending, error } = api.resume.extractDetails.useMutation({
         onSuccess: (data) => {
             console.log("data extraction is complete", data);
             dispatch({type: "UPDATE_RESUME_ANALYSIS", payload: data})
@@ -26,6 +26,8 @@ export const useToResumeDataExtraction = (pdfText: string) => {
     }, [pdfText]);
 
     return {
-        data
+        data,
+        isPending,
+        error,
     }
 };

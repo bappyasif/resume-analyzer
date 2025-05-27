@@ -4,6 +4,7 @@ import React from 'react'
 import { DataSection } from './_components/DataSection'
 import { useAppCtx } from '~/contexts/app'
 import Link from 'next/link'
+import { HydrateClient } from '~/trpc/server'
 
 const ResumeAnalysis = () => {
   const { state } = useAppCtx()
@@ -13,14 +14,13 @@ const ResumeAnalysis = () => {
   // console.log(parsedText, "parsed text", state)
 
   return (
-    <>
+    <main className="flex min-h-screen flex-col items-center justify-center">
       <h1>Resume Analysis</h1>
-      <Link href="/resume/upload">Resume upload</Link>
-      <Link href="/resume/feedback">View Feedback</Link>
+
       <br />
       <br />
       <DataSection pdfText={parsedText} />
-    </>
+    </main>
   )
 }
 

@@ -3,7 +3,8 @@ import Link from "next/link";
 // import { LatestPost } from "~/app/_components/post";
 import { auth } from "~/server/auth";
 import { api, HydrateClient } from "~/trpc/server";
-import { PdfUploader } from "./_components/pdfUploader";
+// import { Navigations } from "./_components/Navigations";
+// import { PdfUploader } from "./_components/pdfUploader";
 
 export default async function Home() {
   const session = await auth();
@@ -14,7 +15,8 @@ export default async function Home() {
 
   return (
     <HydrateClient>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
+      {/* <Navigations /> */}
+      <main className="flex min-h-screen flex-col items-center justify-center">
         {/* {session?.user && <LatestPost />} */}
         <div className="flex flex-col items-center gap-2">
           {/* <p className="text-2xl text-white">
@@ -34,7 +36,7 @@ export default async function Home() {
           </div>
         </div>
 
-        <PdfUploader />
+        {/* <PdfUploader /> */}
 
         {/* <Link href="/pdf-parse">pdf parse</Link> */}
         <Link href="/resume/upload">Upload Resume</Link>

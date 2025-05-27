@@ -6,6 +6,7 @@ import { Geist } from "next/font/google";
 import { TRPCReactProvider } from "~/trpc/react";
 import { auth } from "~/server/auth";
 import AuthProvider from "~/utils/AuthProvider";
+import AppCtxProvider from "~/contexts/app";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -27,11 +28,13 @@ export default async function RootLayout({
     <html lang="en" className={`${geist.variable}`}>
       <body>
         {/* <AuthProvider session={session}> */}
-          {/* <TRPCReactProvider>{children}</TRPCReactProvider> */}
+        {/* <TRPCReactProvider>{children}</TRPCReactProvider> */}
         {/* </AuthProvider> */}
         <TRPCReactProvider>
           <AuthProvider session={session}>
-            {children}
+            <AppCtxProvider>
+              {children}
+            </AppCtxProvider>
           </AuthProvider>
         </TRPCReactProvider>
       </body>

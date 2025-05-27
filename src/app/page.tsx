@@ -35,6 +35,9 @@ export default async function Home() {
         </div>
 
         <PdfUploader />
+
+        {/* <Link href="/pdf-parse">pdf parse</Link> */}
+        <Link href="/resume/upload">Upload Resume</Link>
       </main>
     </HydrateClient>
   );

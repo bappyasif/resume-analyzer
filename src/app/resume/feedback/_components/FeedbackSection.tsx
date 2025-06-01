@@ -1,11 +1,12 @@
 import { useSession } from "next-auth/react";
 
-export const FeedbackSection = ({ label, content }: { label: string, content: { [key: string]: string | string[] } }) => {
+export const FeedbackSection = ({ label, content, status }: { label: string, content: { [key: string]: string | string[] }, status: string }) => {
     if (!content) return null;
     if (Object.keys(content).length === 0) return null;
 
-    const { status } = useSession();
-    console.log("status", status);
+    // changing this as renderToString method is not working accessing next-auth session, as its for client side whereas server side method cant access it
+    // const { status } = useSession();
+    // console.log("status", status);
 
     // useEffect(() => {
     //     auth().then((session) => {

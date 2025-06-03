@@ -30,96 +30,96 @@ export const DataSection = ({ pdfText }: { pdfText: string }) => {
     // }, [data]);
 
     return (
-        <div>
-            <h3>Extracted Details (via tRPC):</h3>
+        <div className='flex flex-col items-center justify-center gap-4'>
+            {/* <h3>Extracted Details (via tRPC):</h3> */}
             {isPending && <p className='text-center text-white text-2xl font-bold'>Extracting details...</p>}
             {error && <p>Error: {error.message}</p>}
             {!(analysis || data) && <p>No data available</p>}
 
             {(analysis || data) && (
-                <Link href="/resume/feedback" className='text-center text-white text-2xl font-bold'>View Feedback</Link>
+                <Link href="/resume/feedback" className='text-center text-white text-2xl font-bold w-full'>View Feedback</Link>
             )}
 
             {(analysis || data) ? (
-                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-                    <p>Name: {(analysis || data)?.name}</p>
-                    <p>Email: {(analysis || data)?.email}</p>
-                    <p>Phone: {(analysis || data)?.phone}</p>
+                <div className="space-y-4">
+                    <p className="font-bold">Name: {(analysis || data)?.name}</p>
+                    <p className="font-bold">Email: {(analysis || data)?.email}</p>
+                    <p className="font-bold">Phone: {(analysis || data)?.phone}</p>
 
-                    <div>
-                        <p>Experience</p>
+                    <div className="space-y-2">
+                        <p className="font-bold">Experience</p>
                         {
                             (analysis || data)?.experience?.map((exp: any, index: number) => (
-                                <div key={index} style={{ marginBottom: "1rem" }}>
-                                    <p>Position: {exp.title}</p>
-                                    <p>Company: {exp.company}</p>
-                                    <p>Start Date: {exp.dates}</p>
-                                    <p>Description: {exp.responsibilities}</p>
+                                <div key={index} className="space-y-1">
+                                    <p className="font-bold">Position: {exp.title}</p>
+                                    <p className="font-bold">Company: {exp.company}</p>
+                                    <p className="font-bold">Start Date: {exp.dates}</p>
+                                    <p>{exp.responsibilities}</p>
                                 </div>
 
                             ))
                         }
                     </div>
 
-                    <div>
-                        <p>Education</p>
+                    <div className="space-y-2">
+                        <p className="font-bold">Education</p>
                         {
                             (analysis || data)?.education?.map((edu: any, index: number) => (
-                                <div key={index} style={{ marginBottom: "1rem" }}>
-                                    <p>{edu.degree}</p>
-                                    <p>{edu.institution}</p>
-                                    <p>{edu.dates}</p>
+                                <div key={index} className="space-y-1">
+                                    <p className="font-bold">{edu.degree}</p>
+                                    <p className="font-bold">{edu.institution}</p>
+                                    <p className="font-bold">{edu.dates}</p>
                                 </div>
                             ))
                         }
                     </div>
 
                     {
-                        (analysis || data)?.certifications && (
+                        (analysis || data)?.certifications ? (
                             <ResumeSection label='Certifications' content={(analysis || data)?.certifications} />
-                        )
+                        ) : null
                     }
 
                     {
-                        (analysis || data)?.skills && (
+                        (analysis || data)?.skills ? (
                             <ResumeSection label='Skills' content={(analysis || data)?.skills} />
-                        )
+                        ) : null
                     }
 
                     {
-                        (analysis || data)?.projects && (
+                        (analysis || data)?.projects ? (
                             <ResumeSection label='Projects' content={(analysis || data)?.projects} />
-                        )
+                        ) : null
                     }
 
                     {
-                        (analysis || data)?.awards?.length && (
+                        (analysis || data)?.awards?.length ? (
                             <ResumeSection label='Awards' content={(analysis || data)?.awards} />
-                        )
+                        ) : null
                     }
 
                     {
-                        (analysis || data)?.languages && (
+                        (analysis || data)?.languages ? (
                             <ResumeSection label='Languages' content={(analysis || data)?.languages} />
-                        )
+                        ) : null
                     }
 
                     {
-                        (analysis || data)?.interests && (
+                        (analysis || data)?.interests ? (
                             <ResumeSection label='Interests' content={(analysis || data)?.interests} />
-                        )
+                        ) : null
                     }
 
                     {
-                        (analysis || data)?.references && (
+                        (analysis || data)?.references ? (
                             <ResumeSection label='References' content={(analysis || data)?.references} />
-                        )
+                        ) : null
                     }
 
                     {
-                        (analysis || data)?.achievements && (
+                        (analysis || data)?.achievements ? (
                             <ResumeSection label='Achievements' content={(analysis || data)?.achievements} />
-                        )
+                        ) : null
                     }
 
                     {/* <p>Summary: {Data?.summary}</p>
@@ -147,13 +147,13 @@ const ResumeSection = ({ label, content }: { label: string, content: string[] })
     if (!content || content.length === 0) return null;
 
     return (
-        <div>
-            <h3>{label}</h3>
-            <ul>
+        <section className="my-4">
+            <h3 className="text-lg font-semibold">{label}</h3>
+            <ul className="list-disc pl-4">
                 {content.map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <li key={index} className="my-1">{item}</li>
                 ))}
             </ul>
-        </div>
+        </section>
     )
 }

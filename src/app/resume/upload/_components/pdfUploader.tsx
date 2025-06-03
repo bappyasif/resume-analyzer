@@ -59,22 +59,25 @@ export function PdfUploader() {
 
 
     return (
-        <div>
-            <input type="file" accept="application/pdf" onChange={handleFileChange} />
-            {isLoading && <p>Loading...</p>}
-            {error && <p>Error: {error.message}</p>}
-            {/* <Link */}
-            {/* {pdfText && <AnalyzeParsedPdf pdfText={pdfText} />} */}
-            {pdfText && (
-                <div>
-                    <h2>Parsed PDF Text:</h2>
-                    <p>{pdfText}</p>
-                    <h2>Info:</h2>
-                    <pre>{JSON.stringify(pdfInfo, null, 2)}</pre>
-                    <h2>Number of pages:</h2>
-                    <p>{numPages}</p>
-                </div>
-            )}
+        <div className="flex flex-col items-center justify-center h-screen">
+            <div className="flex flex-col items-center justify-center w-full max-w-md p-12 bg-blue-800 rounded-xl shadow-lg">
+                <h1 className="text-3xl font-bold mb-4">Upload your resume</h1>
+                <input type="file" accept="application/pdf" onChange={handleFileChange} className="mb-4" />
+                {isLoading && <p className="text-center text-gray-600">Loading...</p>}
+                {error && <p className="text-center text-red-500">{error.message}</p>}
+                {/* <Link */}
+                {/* {pdfText && <AnalyzeParsedPdf pdfText={pdfText} />} */}
+                {/* {pdfText && (
+                    <div className="flex flex-col items-center justify-center">
+                        <h2 className="text-2xl font-bold mb-4">Parsed PDF Text:</h2>
+                        <p className="whitespace-pre-wrap">{pdfText}</p>
+                        <h2 className="text-2xl font-bold mb-4">Info:</h2>
+                        <pre className="whitespace-pre-wrap">{JSON.stringify(pdfInfo, null, 2)}</pre>
+                        <h2 className="text-2xl font-bold mb-4">Number of pages:</h2>
+                        <p className="whitespace-pre-wrap">{numPages}</p>
+                    </div>
+                )} */}
+            </div>
         </div>
     );
 }

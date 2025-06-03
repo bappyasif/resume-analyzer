@@ -91,46 +91,69 @@ const ResumeFeedback = () => {
     const { getHtml, handleDownload, htmlContent } = useToMakePdfDownloadable()
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-center">
-            <h1>Resume Feedback</h1>
+        <main className="flex min-h-screen flex-col items-center justify-center p-6">
+            <h1 className="text-4xl font-bold text-blue-600">Resume Feedback</h1>
 
-            <br />
-            <br />
-            {
-                htmlContent ? (
-                    <button onClick={handleDownload}>Download Feedback!</button>
-                ) : (
-                    <p>Loading...</p>
-                )
-            }
-            {/* {
-                keys.length && (
-                    <button onClick={handleDownload}>Download Feedback!</button>
-                )
-            } */}
-            <br />
-            <br />
+            <div className="my-8">
+                {
+                    htmlContent ? (
+                        <button
+                            onClick={handleDownload}
+                            className="px-4 py-2 bg-blue-500 text-white font-semibold rounded shadow hover:bg-blue-600 transition duration-300"
+                        >
+                            Download Feedback!
+                        </button>
+                    ) : (
+                        <p className="text-lg text-gray-700">Loading...</p>
+                    )
+                }
+            </div>
 
             <FeedbackData getHtml={getHtml} />
-            {/* {
-                isPending && <p>Loading...</p>
-            }
-
-            {
-                error && <p>{error.message}</p>
-            }
-
-            {
-                keys.length && values.length && <Link href="/">Go back to resume upload</Link>
-            }
-
-            {
-                values?.map((value, index) => {
-                    return <FeedbackSection key={index} label={keys[index]!} content={value as { [key: string]: string | string[] }} />
-                })
-            } */}
         </main>
     )
+
+    // return (
+    //     <main className="flex min-h-screen flex-col items-center justify-center">
+    //         <h1>Resume Feedback</h1>
+
+    //         <br />
+    //         <br />
+    //         {
+    //             htmlContent ? (
+    //                 <button onClick={handleDownload}>Download Feedback!</button>
+    //             ) : (
+    //                 <p>Loading...</p>
+    //             )
+    //         }
+    //         {/* {
+    //             keys.length && (
+    //                 <button onClick={handleDownload}>Download Feedback!</button>
+    //             )
+    //         } */}
+    //         <br />
+    //         <br />
+
+    //         <FeedbackData getHtml={getHtml} />
+    //         {/* {
+    //             isPending && <p>Loading...</p>
+    //         }
+
+    //         {
+    //             error && <p>{error.message}</p>
+    //         }
+
+    //         {
+    //             keys.length && values.length && <Link href="/">Go back to resume upload</Link>
+    //         }
+
+    //         {
+    //             values?.map((value, index) => {
+    //                 return <FeedbackSection key={index} label={keys[index]!} content={value as { [key: string]: string | string[] }} />
+    //             })
+    //         } */}
+    //     </main>
+    // )
 }
 
 export default ResumeFeedback

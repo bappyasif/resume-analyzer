@@ -16,23 +16,29 @@ export const FeedbackSection = ({ label, content, status }: { label: string, con
     //     })
     // }, [content]);
 
+    const data = Object.entries(content)
+
 
     return (
-        <div style={{ display: "flex", flexDirection: "column", gap: "0.4rem", margin: "1rem 0" }}>
-            <h3>{label}</h3>
+        <div className="space-y-4 my-4 rounded-md shadow-md p-4" style={{ display: "flex", flexDirection: "column" }}>
+            <h3 className="font-bold text-3xl text-blue-200 uppercase">{label}</h3>
             {
                 status === "unauthenticated" && label !== "education" ? (
-                    <p>Sign in to view feedback</p>
+                    <p className="text-center text-lg text-gray-600">Sign in to view feedback</p>
                 ) : (
-                    Object.entries(content).map(([key, value]) => {
-                        if (typeof value === 'string') {
-                            return <FeedbackSectionAsString key={key} label={key} content={value} />
-                        } else if (Array.isArray(value)) {
-                            return <FeedbackSectionAsArray key={key} label={key} content={value} />
-                        } else {
-                            return null;
+                    <div className={`grid ${data?.length > 2 ? "grid-cols-3" : data?.length > 1 ? "grid-cols-2" : "grid-cols-1"} gap-4`}>
+                        {
+                            data.map(([key, value]) => {
+                                if (typeof value === 'string') {
+                                    return <FeedbackSectionAsString key={key} label={key} content={value} />
+                                } else if (Array.isArray(value)) {
+                                    return <FeedbackSectionAsArray key={key} label={key} content={value} />
+                                } else {
+                                    return null;
+                                }
+                            })
                         }
-                    })
+                    </div>
                 )
             }
         </div>
@@ -43,9 +49,9 @@ const FeedbackSectionAsString = ({ label, content }: { label: string, content: s
     if (!content || content.length === 0) return null;
 
     return (
-        <div>
-            <h3>{label}</h3>
-            <p>{content}</p>
+        <div className="p-4 bg-blue-100 rounded-md shadow-md">
+            <h3 className="text-xl font-bold text-amber-400 capitalize">{label}</h3>
+            <p className="text-blue-400">{content}</p>
         </div>
     )
 }
@@ -54,11 +60,11 @@ const FeedbackSectionAsArray = ({ label, content }: { label: string, content: st
     if (!content || content.length === 0) return null;
 
     return (
-        <div>
-            <h3>{label}</h3>
-            <ul>
+        <div className="space-y-2">
+            <h3 className="text-lg font-semibold text-amber-400 capitalize">{label}</h3>
+            <ul className="list-disc pl-4">
                 {content.map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <li key={index} className="text-blue-400">{item}</li>
                 ))}
             </ul>
         </div>

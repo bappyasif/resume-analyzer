@@ -19,9 +19,13 @@ export const FeedbackData = ({getHtml}: {getHtml: (htmlContent: string) => void}
 
     const { keys, values, error, isPending } = result
 
-    const markups = values?.map((key, index) => {
-        return <FeedbackSection key={index} label={keys[index]!} content={values[index] as { [key: string]: string | string[] }} status={status} />
+    const markups = values?.map((value, index) => {
+        return value ? <FeedbackSection key={index} label={keys[index]!} content={value as { [key: string]: string | string[] }} status={status} /> : null
     })
+
+    // const markups = values?.map((key, index) => {
+    //     return <FeedbackSection key={index} label={keys[index]!} content={values[index] as { [key: string]: string | string[] }} status={status} />
+    // })
 
     // useEffect(() => {
     //     const htmlContent = getHtml(renderToString(markups));
@@ -31,32 +35,37 @@ export const FeedbackData = ({getHtml}: {getHtml: (htmlContent: string) => void}
     useEffect(() => {
         if (!markups) return
         const htmlContent = renderToString(markups);
+        // console.log(markups);
         getHtml?.(htmlContent);
     }, [markups, getHtml])
 
     if (!keys.length || !values.length) return null
 
     return (
-        <div>
+        <div className="mx-auto p-4 pt-8 md:p-8">
             {
-                isPending && <p>Loading...</p>
+                isPending && <p className="text-xl text-gray-600">Loading...</p>
             }
 
             {
-                error && <p>{error.message}</p>
+                error && <p className="text-xl text-red-600">{error.message}</p>
             }
 
             {
-                keys.length && values.length && <Link href="/">Go back to resume upload</Link>
+                keys.length && values.length && <Link href="/" className="text-xl text-blue-600 underline hover:text-blue-800">Go back to resume upload</Link>
             }
 
             {
-               values?.length && markups
+                values?.length && (
+                    <div className="grid gap-4">
+                        {markups}
+                    </div>
+                )
             }
 
             {/* {
                 keys.length && (
-                    <button>Download Feedback</button>
+                    <button className="mt-4 w-full rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-700">Download Feedback</button>
                 )
             } */}
 

@@ -3,6 +3,9 @@ import Link from "next/link";
 // import { LatestPost } from "~/app/_components/post";
 import { auth } from "~/server/auth";
 import { api, HydrateClient } from "~/trpc/server";
+import { MainSection } from "./_components/MainSection";
+import StatisticsSection from "./_components/Statistics";
+import HowItWorksSection from "./_components/HowItWorks";
 // import { Navigations } from "./_components/Navigations";
 // import { PdfUploader } from "./_components/pdfUploader";
 
@@ -16,8 +19,12 @@ export default async function Home() {
   return (
     <HydrateClient>
       {/* <Navigations /> */}
-      <main className="flex min-h-screen flex-col items-center justify-center bg-[#2E026D] p-4">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-[#2E026D] p-4 gap-3.5">
         {/* {session?.user && <LatestPost />} */}
+        <MainSection />
+        <StatisticsSection />
+        <HowItWorksSection />
+
         <div className="flex flex-col items-center gap-2">
           {/* <p className="text-2xl text-white">
               {hello ? hello.greeting : "Loading tRPC query..."}

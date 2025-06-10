@@ -8,6 +8,7 @@ import { auth } from "~/server/auth";
 import AuthProvider from "~/utils/AuthProvider";
 import AppCtxProvider from "~/contexts/app";
 import { Navigations } from "./_components/Navigations";
+import { Header } from "./_components/Header";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -28,13 +29,15 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${geist.variable}`}>
       <body className="bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-        <Navigations />
+        {/* <Header /> */}
+        {/* <Navigations /> */}
         {/* <AuthProvider session={session}> */}
         {/* <TRPCReactProvider>{children}</TRPCReactProvider> */}
         {/* </AuthProvider> */}
         <TRPCReactProvider>
           <AuthProvider session={session}>
             <AppCtxProvider>
+              <Header />
               {/* <Navigations /> */}
               {children}
             </AppCtxProvider>

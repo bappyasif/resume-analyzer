@@ -16,7 +16,7 @@ export default async function Home() {
   return (
     <HydrateClient>
       {/* <Navigations /> */}
-      <main className="flex min-h-screen flex-col items-center justify-center">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-[#2E026D] p-4">
         {/* {session?.user && <LatestPost />} */}
         <div className="flex flex-col items-center gap-2">
           {/* <p className="text-2xl text-white">
@@ -39,7 +39,9 @@ export default async function Home() {
         {/* <PdfUploader /> */}
 
         {/* <Link href="/pdf-parse">pdf parse</Link> */}
-        <Link href="/resume/upload">Upload Resume</Link>
+        <Link href="/resume/upload" className="text-white underline">
+          Upload Resume
+        </Link>
       </main>
     </HydrateClient>
   );

@@ -1,8 +1,13 @@
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
 
 export const Navigations = () => {
-    const navs = options.map((nav) => {
+    const { status } = useSession()
+
+    const optionsAdjusted = status !== "authenticated" ? options.slice(0, 2) : options
+
+    const navs = optionsAdjusted.map((nav) => {
         return (
             <li key={nav.path}>
                 {/* <a href={nav.path}>{nav.label}</a> */}
@@ -13,7 +18,9 @@ export const Navigations = () => {
 
     return (
         <nav>
-            <ul style={{ listStyle: "none", display: "flex", gap: "1rem", justifyContent: "center", padding: "1rem", margin: "0" }}>{navs}</ul>
+            <ul 
+            style={{ listStyle: "none", display: "flex", gap: "1rem", justifyContent: "center", padding: "1rem", margin: "0", flexDirection: "column" }}
+            >{navs}</ul>
         </nav>
     )
 }

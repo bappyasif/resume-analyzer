@@ -1,5 +1,5 @@
 import { AiFillFileText, AiFillStar, AiOutlineDownload } from "react-icons/ai"
-import { BiBriefcase } from "react-icons/bi"
+import { BiBadgeCheck } from "react-icons/bi"
 
 export default function HowItWorksSection() {
     const steps = [
@@ -11,14 +11,20 @@ export default function HowItWorksSection() {
         },
         {
             number: "02",
-            icon: BiBriefcase,
-            title: "Add Job Description",
-            description: "Paste the job description to tailor your cover letter to the specific role.",
+            icon: BiBadgeCheck,
+            title: "See analysis",
+            description: "Review your resume analysis to understand your strengths and weaknesses.",
         },
         {
             number: "03",
+            icon: AiFillStar,
+            title: "View Feedback",
+            description: "Provide feedback on the quality and content of your cover letter.",
+        },
+        {
+            number: "04",
             icon: AiOutlineDownload,
-            title: "Generate & Download",
+            title: "Download Feedback",
             description: "Get your personalized cover letter instantly, ready to send to employers.",
         },
     ]
@@ -32,7 +38,7 @@ export default function HowItWorksSection() {
             </div>
 
             {/* Steps Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
                 {steps.map((step, index) => {
                     const IconComponent = step.icon
                     return (

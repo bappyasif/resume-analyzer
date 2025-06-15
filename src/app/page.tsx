@@ -6,6 +6,7 @@ import { api, HydrateClient } from "~/trpc/server";
 import { MainSection } from "./_components/MainSection";
 import StatisticsSection from "./_components/Statistics";
 import HowItWorksSection from "./_components/HowItWorks";
+import FAQSection from "./_components/Faq";
 // import { Navigations } from "./_components/Navigations";
 // import { PdfUploader } from "./_components/pdfUploader";
 
@@ -24,6 +25,7 @@ export default async function Home() {
         <MainSection />
         <StatisticsSection />
         <HowItWorksSection />
+        <FAQSection />
 
         <div className="flex flex-col items-center gap-2">
           {/* <p className="text-2xl text-white">

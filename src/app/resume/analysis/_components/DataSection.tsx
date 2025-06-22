@@ -32,46 +32,67 @@ export const DataSection = ({ pdfText }: { pdfText: string }) => {
     return (
         <div className='flex flex-col items-center justify-center gap-4'>
             {/* <h3>Extracted Details (via tRPC):</h3> */}
-            {isPending && <p className='text-center text-white text-2xl font-bold'>Extracting details...</p>}
+            {/* {isPending && <p className='text-center text-white text-2xl font-bold'>Extracting details...</p>}
             {error && <p>Error: {error.message}</p>}
-            {!(analysis || data) && <p>No data available</p>}
+            {!(analysis || data) && !isPending && <p>No data available</p>} */}
 
-            {(analysis || data) && (
-                <Link href="/resume/feedback" className='text-center text-white text-2xl font-bold w-full'>View Feedback</Link>
-            )}
+            <div className="my-12">
+                {isPending && <p className='text-center text-white text-2xl font-bold'>Extracting details...</p>}
+                {error && <p>Error: {error.message}</p>}
+                {!(analysis || data) && !isPending && <p>No data available</p>}
+                {(analysis || data) && !isPending && (
+                    <Link href="/resume/feedback"
+                        // className='text-center text-white text-2xl font-bold w-full'
+                        className="px-6 py-4 bg-white/80 text-blue-600 font-semibold rounded shadow hover:bg-blue-100 transition duration-300"
+                    >View Feedback</Link>
+                )}
+            </div>
+
+            {/* {(analysis || data) && !isPending && (
+                <Link href="/resume/feedback" 
+                // className='text-center text-white text-2xl font-bold w-full'
+                className="px-6 py-4 bg-white/80 text-blue-600 font-semibold rounded shadow hover:bg-blue-100 transition duration-300"
+                >View Feedback</Link>
+            )} */}
 
             {(analysis || data) ? (
-                <div className="space-y-4">
-                    <p className="font-bold">Name: {(analysis || data)?.name}</p>
-                    <p className="font-bold">Email: {(analysis || data)?.email}</p>
-                    <p className="font-bold">Phone: {(analysis || data)?.phone}</p>
-
+                <div className="space-y-10">
                     <div className="space-y-2">
-                        <p className="font-bold">Experience</p>
-                        {
-                            (analysis || data)?.experience?.map((exp: any, index: number) => (
-                                <div key={index} className="space-y-1">
-                                    <p className="font-bold">Position: {exp.title}</p>
-                                    <p className="font-bold">Company: {exp.company}</p>
-                                    <p className="font-bold">Start Date: {exp.dates}</p>
-                                    <p>{exp.responsibilities}</p>
-                                </div>
-
-                            ))
-                        }
+                        <p className="font-bold">Name: {(analysis || data)?.name}</p>
+                        <p className="font-bold">Email: {(analysis || data)?.email}</p>
+                        <p className="font-bold">Phone: {(analysis || data)?.phone}</p>
                     </div>
 
                     <div className="space-y-2">
-                        <p className="font-bold">Education</p>
-                        {
-                            (analysis || data)?.education?.map((edu: any, index: number) => (
-                                <div key={index} className="space-y-1">
-                                    <p className="font-bold">{edu.degree}</p>
-                                    <p className="font-bold">{edu.institution}</p>
-                                    <p className="font-bold">{edu.dates}</p>
-                                </div>
-                            ))
-                        }
+                        <p className="font-bold text-3xl text-blue-200 uppercase">Experience</p>
+                        <div className={`grid ${(analysis || data)?.experience?.length <= 4 ? `grid-cols-${(analysis || data)?.experience?.length.toString()}` : "grid-cols-4"} gap-4`}>
+                            {
+                                (analysis || data)?.experience?.map((exp: any, index: number) => (
+                                    <div key={index} className="space-y-1">
+                                        <p className="font-bold">Position: {exp.title}</p>
+                                        <p className="font-bold">Company: {exp.company}</p>
+                                        <p className="font-bold">Start Date: {exp.dates}</p>
+                                        <p>{exp.responsibilities}</p>
+                                    </div>
+
+                                ))
+                            }
+                        </div>
+                    </div>
+
+                    <div className="space-y-2">
+                        <p className="font-bold text-3xl text-blue-200 uppercase">Education</p>
+                        <div className={`grid ${(analysis || data)?.education?.length <= 4 ? `grid-cols-${(analysis || data)?.education?.length.toString()}` : "grid-cols-4"} gap-4`}>
+                            {
+                                (analysis || data)?.education?.map((edu: any, index: number) => (
+                                    <div key={index} className="space-y-1">
+                                        <p className="font-bold">{edu.degree}</p>
+                                        <p className="font-bold">{edu.institution}</p>
+                                        <p className="font-bold">{edu.dates}</p>
+                                    </div>
+                                ))
+                            }
+                        </div>
                     </div>
 
                     {
@@ -148,11 +169,16 @@ const ResumeSection = ({ label, content }: { label: string, content: string[] })
 
     return (
         <section className="my-4">
-            <h3 className="text-lg font-semibold">{label}</h3>
-            <ul className="list-disc pl-4">
-                {content.map((item, index) => (
-                    <li key={index} className="my-1">{item}</li>
-                ))}
+            <h3 className="font-bold text-3xl text-blue-200 uppercase">{label}</h3>
+            <ul
+                // className="list-disc pl-4"
+                className={`list-disc pl-4 grid ${(content || []).length <= 4 ? `grid-cols-${(content || []).length.toString()}` : "grid-cols-4"} gap-4`}
+            >
+                {
+                    content.map((item, index) => (
+                        <li key={index} className="my-1">{item}</li>
+                    ))
+                }
             </ul>
         </section>
     )

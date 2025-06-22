@@ -91,10 +91,10 @@ const ResumeFeedback = () => {
     const { getHtml, handleDownload, htmlContent } = useToMakePdfDownloadable()
 
     return (
-        <main className="flex flex-col items-center justify-center min-h-screen p-6 lg:p-12">
+        <main className="flex flex-col items-center justify-center min-h-screen p-20">
             <h1 className="text-6xl font-bold text-white">Resume Feedback</h1>
 
-            <div className="my-12">
+            <div className="my-20">
                 {
                     htmlContent ? (
                         <button
@@ -109,7 +109,7 @@ const ResumeFeedback = () => {
                 }
             </div>
 
-            <div className="bg-white rounded-lg p-12 shadow-lg">
+            <div className="bg-transparent rounded-lg shadow-lg">
                 <FeedbackData getHtml={getHtml} />
             </div>
         </main>

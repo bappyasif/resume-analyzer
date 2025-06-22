@@ -14,7 +14,7 @@ const ResumeAnalysis = () => {
   // console.log(parsedText, "parsed text", state)
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-12">
+    <main className="flex flex-col items-center justify-center min-h-screen p-20">
       <h1 className="text-6xl font-bold text-white">Resume Analysis</h1>
 
       <br />

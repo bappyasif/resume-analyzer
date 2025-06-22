@@ -6,14 +6,14 @@ import Link from 'next/link'
 import { renderToString } from 'react-dom/server'
 import { useSession } from 'next-auth/react'
 
-export const FeedbackData = ({getHtml}: {getHtml: (htmlContent: string) => void}) => {
+export const FeedbackData = ({ getHtml }: { getHtml: (htmlContent: string) => void }) => {
     const { state } = useAppCtx()
     const { resume } = state
     const { parsedText, feedback } = resume
 
-    const {status} = useSession()
+    const { status } = useSession()
 
-    console.log(feedback, "feedback")
+    // console.log(feedback, "feedback")
 
     const result = useToFetchFeedback(parsedText)
 
@@ -42,22 +42,24 @@ export const FeedbackData = ({getHtml}: {getHtml: (htmlContent: string) => void}
     if (!keys.length || !values.length) return null
 
     return (
-        <div className="mx-auto p-4 pt-8 md:p-8">
-            {
-                isPending && <p className="text-xl text-gray-600">Loading...</p>
-            }
+        <div className="mx-auto bg-transparent space-y-10">
+            <div className="flex items-center justify-center">
+                {
+                    isPending && <p className="text-xl text-gray-600">Loading...</p>
+                }
 
-            {
-                error && <p className="text-xl text-red-600">{error.message}</p>
-            }
+                {
+                    error && <p className="text-xl text-red-600">{error.message}</p>
+                }
 
-            {
-                keys.length && values.length && <Link href="/" className="text-xl text-blue-600 underline hover:text-blue-800">Go back to resume upload</Link>
-            }
+                {
+                    keys.length && values.length && <Link href="/" className="text-xl text-blue-600 underline hover:text-blue-800">Go back to resume upload</Link>
+                }
+            </div>
 
             {
                 values?.length && (
-                    <div className="grid gap-4">
+                    <div className="grid gap-12 bg-transparent">
                         {markups}
                     </div>
                 )

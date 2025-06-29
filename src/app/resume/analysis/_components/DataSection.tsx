@@ -39,7 +39,12 @@ export const DataSection = ({ pdfText }: { pdfText: string }) => {
             <div className="my-12">
                 {isPending && <p className='text-center text-white text-2xl font-bold'>Extracting details...</p>}
                 {error && <p>Error: {error.message}</p>}
-                {!(analysis || data) && !isPending && <p>No data available</p>}
+                {!(analysis || data) && !isPending && (
+                    <div className='flex flex-col items-center justify-center gap-4'>
+                        <p className='text-center text-white text-2xl font-bold'>No data available</p>
+                        <Link href="/resume/upload" className="px-6 py-4 bg-white/80 text-blue-600 font-semibold rounded shadow hover:bg-blue-100 transition duration-300">Upload Resume</Link>
+                    </div>
+                )}
                 {(analysis || data) && !isPending && (
                     <Link href="/resume/feedback"
                         // className='text-center text-white text-2xl font-bold w-full'
@@ -55,7 +60,7 @@ export const DataSection = ({ pdfText }: { pdfText: string }) => {
                 >View Feedback</Link>
             )} */}
 
-            {(analysis || data) ? (
+            {(analysis || data) && isPending ? (
                 <div className="space-y-10">
                     <div className="space-y-2">
                         <p className="font-bold">Name: {(analysis || data)?.name}</p>
@@ -154,12 +159,23 @@ export const DataSection = ({ pdfText }: { pdfText: string }) => {
                 <p>References: {Data?.references}</p> */}
                 </div>
             ) : (
-                <p>No details extracted yet or extraction in progress.</p>
+
+                pdfText && (
+                    <p>No details extracted yet</p>
+                )
+
+                // <p>Extraction data in progress.</p>
             )}
             {/* Optionally, add a button to re-trigger if needed, though useEffect handles initial load */}
             {/* <button onClick={handleExtractDetails} disabled={extractMutation.isPending}>
             {extractMutation.isPending ? 'Extracting...' : 'Re-Extract Details'}
         </button> */}
+
+            {
+                (data || analysis) && !isPending && (
+                    <p>Extraction in progress.</p>
+                )
+            }
         </div>
     )
 }

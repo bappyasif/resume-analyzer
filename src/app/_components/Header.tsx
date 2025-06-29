@@ -8,6 +8,7 @@ import { useToToggleBoolean } from '~/hooks/useToToggleBoolean'
 import { Navigations } from './Navigations'
 import { useToDetectClickedOutside } from '~/hooks/useToClickedOutside'
 import { NavigationsMenu } from './NavigationsMenu'
+import { HeaderMenuNavLinks } from './HeaderMenuNavLinks'
 // import { signIn, signOut } from '~/server/auth'
 
 export const Header = () => {
@@ -19,7 +20,11 @@ export const Header = () => {
                 LOGO <AiFillOpenAI className="ml-2 text-2xl" />
             </p>
 
+            <HeaderMenuNavLinks />
+
             <NavigationsMenu />
+
+            {/* <NavigationsMenu /> */}
             {/* <div className="flex items-center space-x-4"> */}
                 {/* <Profile status={status} /> */}
                 {/* <AiOutlineMenu className="text-white text-2xl hover:text-gray-300 transition-colors duration-200" /> */}

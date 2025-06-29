@@ -90,6 +90,10 @@ const ResumeFeedback = () => {
 
     const { getHtml, handleDownload, htmlContent } = useToMakePdfDownloadable()
 
+    const { state } = useAppCtx()
+
+    const { resume } = state
+
     return (
         <main className="flex flex-col items-center justify-center min-h-screen p-20">
             <h1 className="text-6xl font-bold text-white">Resume Feedback</h1>
@@ -101,10 +105,23 @@ const ResumeFeedback = () => {
                             onClick={handleDownload}
                             className="px-6 py-4 bg-white text-blue-600 font-semibold rounded shadow hover:bg-blue-100 transition duration-300"
                         >
-                            Download Feedback!
+                            Download Feedback
                         </button>
                     ) : (
-                        <p className="text-2xl text-gray-200">Loading...</p>
+                        resume?.parsedText
+                            ? (
+                                <p className="text-2xl text-gray-200">Loading...</p>
+                            )
+                            : (
+                                <div className="flex flex-col items-center justify-center gap-4">
+                                    <p className="text-2xl text-gray-200">No data available</p>
+                                    {/* <p className="text-xl text-gray-200">Please upload your resume first.</p> */}
+                                    <Link href="/resume/upload" className="px-6 py-4 bg-white/80 text-blue-600 font-semibold rounded shadow hover:bg-blue-100 transition duration-300">
+                                        Upload Resume
+                                    </Link>
+                                </div>
+                            )
+                        // <p className="text-2xl text-gray-200">Loading...</p>
                     )
                 }
             </div>

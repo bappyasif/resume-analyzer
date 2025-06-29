@@ -190,8 +190,8 @@ export const NavigationsMenu = () => {
                     </DropdownMenuSub>
                 </DropdownMenuGroup>
 
-                <DropdownMenuSeparator />
-                <HomePage setFalse={setFalse} />
+                {/* <DropdownMenuSeparator /> */}
+                {/* <HomePage setFalse={setFalse} /> */}
                 {/* <DropdownMenuItem onClick={setFalse}>
                     <Link href="/">Home</Link>
                 </DropdownMenuItem> */}

@@ -7,6 +7,7 @@ import { MainSection } from "./_components/MainSection";
 import StatisticsSection from "./_components/Statistics";
 import HowItWorksSection from "./_components/HowItWorks";
 import FAQSection from "./_components/Faq";
+import { FeatureCards } from "./_components/FeatureCards";
 // import { Navigations } from "./_components/Navigations";
 // import { PdfUploader } from "./_components/pdfUploader";
 
@@ -23,14 +24,23 @@ export default async function Home() {
       <main className="flex min-h-screen flex-col items-center justify-center bg-[#2E026D] p-4 gap-3.5">
         {/* {session?.user && <LatestPost />} */}
         <MainSection />
-        <StatisticsSection />
+        {/* <StatisticsSection /> */}
+        <section className="py-16 px-4 bg-transparent w-full">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Features</h2>
+            <p className="text-lg text-gray-300">Why choose us?</p>
+          </div>
+          <div className="max-w-4xl mx-auto">
+            <FeatureCards />
+          </div>
+        </section>
         <HowItWorksSection />
-        <FAQSection />
+        {/* <FAQSection /> */}
 
-        <div className="flex flex-col items-center gap-2">
-          {/* <p className="text-2xl text-white">
+        {/* <div className="flex flex-col items-center gap-2">
+          <p className="text-2xl text-white">
               {hello ? hello.greeting : "Loading tRPC query..."}
-            </p> */}
+            </p>
 
           <div className="flex flex-col items-center justify-center gap-4">
             <p className="text-center text-2xl text-white">
@@ -43,12 +53,12 @@ export default async function Home() {
               {session ? "Sign out" : "Sign in"}
             </Link>
           </div>
-        </div>
+        </div> */}
 
         {/* <PdfUploader /> */}
 
         {/* <Link href="/pdf-parse">pdf parse</Link> */}
-        <Link href="/resume/upload" className="text-white underline">
+        <Link href="/resume/upload" className="flex justify-center px-8 py-4 bg-blue-600 text-white font-bold text-xl shadow-lg hover:bg-blue-700 transition duration-300 mt-6 w-1/4 text-center items-center my-4 rounded-2xl">
           Upload Resume
         </Link>
       </main>

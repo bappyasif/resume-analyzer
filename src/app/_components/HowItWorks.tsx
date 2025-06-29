@@ -4,25 +4,25 @@ import { BiBadgeCheck } from "react-icons/bi"
 export default function HowItWorksSection() {
     const steps = [
         {
-            number: "01",
-            icon: AiFillFileText,
+            number: "Step 1",
+            icon: AiFillStar,
             title: "Upload Resume",
             description: "Upload your existing resume or CV to provide your experience and skills.",
         },
         {
-            number: "02",
-            icon: BiBadgeCheck,
+            number: "Step 2",
+            icon: AiFillFileText,
             title: "See analysis",
             description: "Review your resume analysis to understand your strengths and weaknesses.",
         },
         {
-            number: "03",
-            icon: AiFillStar,
+            number: "Step 3",
+            icon: BiBadgeCheck,
             title: "View Feedback",
             description: "Provide feedback on the quality and content of your cover letter.",
         },
         {
-            number: "04",
+            number: "Step 4",
             icon: AiOutlineDownload,
             title: "Download Feedback",
             description: "Get your personalized cover letter instantly, ready to send to employers.",
@@ -30,7 +30,7 @@ export default function HowItWorksSection() {
     ]
 
     return (
-        <section className="py-16 px-4 bg-transparent w-full">
+        <section className="py-40 px-4 bg-transparent w-full">
             {/* Section Header */}
             <div className="text-center mb-16">
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">How It Works</h2>

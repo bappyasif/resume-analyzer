@@ -14,25 +14,31 @@ import { useRouter } from "next/navigation"
 interface FileWithPreview extends File {
     progress?: number
     status?: "uploading" | "completed" | "error"
-    id: string
+    id: string,
+    data?: File
 }
 
 export default function SinglePdfUploadPage() {
     const [file, setFile] = useState<FileWithPreview | null>(null)
     const [isUploading, setIsUploading] = useState(false)
-    const [pdf, setPdf] = useState<File | null>(null)
+    // const [pdf, setPdf] = useState<File | null>(null)
 
     const onDrop = useCallback((acceptedFiles: File[]) => {
-        if (acceptedFiles.length > 0) {
+        if (acceptedFiles[0]?.name) {
+
             const newFile = {
-                ...acceptedFiles[0],
+                // ...acceptedFiles[0],
                 progress: 0,
-                status: "uploading" as const,
+                status: "uploading",
                 id: Math.random().toString(36).substr(2, 9),
+                data: acceptedFiles[0]
             }
+
+            // console.log(newFile, "new file", acceptedFiles[0])
             setFile(newFile as FileWithPreview)
-            acceptedFiles[0] && setPdf(acceptedFiles[0])
+            // acceptedFiles[0] && setPdf(acceptedFiles[0])
             simulateUpload(newFile as FileWithPreview)
+            // console.log(newFile, "new file")
         }
     }, [])
 
@@ -92,7 +98,12 @@ export default function SinglePdfUploadPage() {
         if (!file) return;
 // const blob: Blob = new Blob([file], { type: file.type });
         // handleFile(file)
-        handleFile(pdf)
+        // console.log(pdf, "pdf text", file?.type, file?.name, file?.size, file.name)
+        handleFile(file.data)
+        // console.log(file, "file")
+
+        // handleFile(pdf)
+        // handleFile(file.text)
     }, [file])
 
 
@@ -173,11 +184,11 @@ export default function SinglePdfUploadPage() {
                                 {/* File Info */}
                                 <div className="flex-1 min-w-0">
                                     <div className="flex items-center space-x-2 mb-1">
-                                        <p className="text-sm font-medium truncate text-primary-foreground">{file.name}</p>
+                                        <p className="text-sm font-medium truncate text-primary-foreground">{file.data?.name}</p>
                                         {file.status === "completed" && <Check className="h-4 w-4 text-green-600" />}
                                         {file.status === "error" && <AlertCircle className="h-4 w-4 text-red-600" />}
                                     </div>
-                                    <p className="text-xs text-muted-foreground mb-2">{formatFileSize(file.size)}</p>
+                                    <p className="text-xs text-muted-foreground mb-2">{formatFileSize(file?.data?.size || 0)}</p>
                                     {file.status === "uploading" && <Progress value={file.progress} className="h-2" />}
                                     {file.status === "completed" && (
                                         <div className="text-xs text-green-600 font-medium">Upload completed</div>

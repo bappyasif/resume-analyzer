@@ -60,7 +60,7 @@ export const DataSection = ({ pdfText }: { pdfText: string }) => {
                 >View Feedback</Link>
             )} */}
 
-            {(analysis || data) && isPending ? (
+            {(analysis || data) && !isPending ? (
                 <div className="space-y-10">
                     <div className="space-y-2">
                         <p className="font-bold">Name: {(analysis || data)?.name}</p>
@@ -172,7 +172,7 @@ export const DataSection = ({ pdfText }: { pdfText: string }) => {
         </button> */}
 
             {
-                (data || analysis) && !isPending && (
+                !(data || analysis) && isPending && (
                     <p>Extraction in progress.</p>
                 )
             }

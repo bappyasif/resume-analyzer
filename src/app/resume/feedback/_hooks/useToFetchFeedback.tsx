@@ -10,8 +10,8 @@ export const useToFetchFeedback = (pdfText: string) => {
     
     const { mutate, data, isPending, error } = api.resume.feedback.useMutation({
         onSuccess: (data) => {
-            console.log("feedback data is complete", data);
-            dispatch({type: "UPDATE_RESUME_FEEDBACK", payload: data})
+            // console.log("feedback data is complete", data);
+            dispatch({type: "UPDATE_RESUME_FEEDBACK", payload: data?.feedback || data})
         },
         onError: (error) => {
             console.log(error);
@@ -27,6 +27,9 @@ export const useToFetchFeedback = (pdfText: string) => {
     // if (!data) return null;
 
     const dataSource = feedback || data
+    // const dataSource = feedback || feedback?.feedback || data
+
+    // console.log("feedback data", dataSource, feedback);
 
     // if (!dataSource) return null
 

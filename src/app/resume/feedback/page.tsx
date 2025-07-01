@@ -94,6 +94,8 @@ const ResumeFeedback = () => {
 
     const { resume } = state
 
+    // console.log(resume, "resume")
+
     return (
         <main className="flex flex-col items-center justify-center min-h-screen p-20">
             <h1 className="text-6xl font-bold text-white">Resume Feedback</h1>

@@ -18,6 +18,7 @@ export const FeedbackSection = ({ label, content, status }: { label: string, con
 
     const data = Object.entries(content)
 
+    // console.log(data, "data!!");
 
     return (
         <div className="my-4 rounded-md shadow-md" style={{ display: "flex", flexDirection: "column" }}>
@@ -35,12 +36,39 @@ export const FeedbackSection = ({ label, content, status }: { label: string, con
                                 if (typeof value === 'string') {
                                     return <FeedbackSectionAsString key={key} label={key} content={value} />
                                 } else if (Array.isArray(value)) {
+                                    // console.log(value, "value>><<");
                                     return <FeedbackSectionAsArray key={key} label={key} content={value} />
-                                } else {
+                                } 
+                                // else if (typeof value === 'object') {
+                                //     for(let key in value as any) {
+                                //         if (typeof value[key] === 'string') {
+                                //             return <FeedbackSectionAsString key={key} label={key} content={value[key]} />
+                                //         } else if (Array.isArray(value[key])) {
+                                //             return <FeedbackSectionAsArray key={key} label={key} content={value[key]} />
+                                //         }
+                                //     }
+                                //     // const {} = value;
+                                //     console.log(value, "value>>><><><<><>", typeof value);
+                                // }                                 
+                                else {
                                     return null;
                                 }
                             })
                         }
+                    </div>
+                )
+            }
+            {
+                label === "ats_score" && (
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="p-4 bg-transparent rounded-md shadow-md">
+                            <h3 className="text-xl font-bold text-amber-400 capitalize">Before</h3>
+                            <p className="text-blue-50">{content?.before}</p>
+                        </div>
+                        <div className="p-4 bg-transparent rounded-md shadow-md">
+                            <h3 className="text-xl font-bold text-amber-400 capitalize">After</h3>
+                            <p className="text-blue-50">{content?.after}</p>
+                        </div>
                     </div>
                 )
             }
@@ -51,8 +79,10 @@ export const FeedbackSection = ({ label, content, status }: { label: string, con
 const FeedbackSectionAsString = ({ label, content }: { label: string, content: string }) => {
     if (!content || content.length === 0) return null;
 
+    // label === "ats_score" && console.log(content, "content");
+
     return (
-        <div className="p-4 bg-blue-100 rounded-md shadow-md">
+        <div className="p-4 bg-transparent rounded-md shadow-md">
             <h3 className="text-xl font-bold text-amber-400 capitalize">{label}</h3>
             <p className="text-blue-50">{content}</p>
         </div>
@@ -61,6 +91,9 @@ const FeedbackSectionAsString = ({ label, content }: { label: string, content: s
 
 const FeedbackSectionAsArray = ({ label, content }: { label: string, content: string[] }) => {
     if (!content || content.length === 0) return null;
+
+    label === "ats_score" && console.log(content, "content array");
+
 
     return (
         <div className="space-y-2">

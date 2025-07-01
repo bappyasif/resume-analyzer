@@ -20,6 +20,9 @@ export const FeedbackData = ({ getHtml }: { getHtml: (htmlContent: string) => vo
     const { keys, values, error, isPending } = result
 
     const markups = values?.map((value, index) => {
+        // console.log(value, "value",  index, keys[index], value, status, typeof value);
+        // if(typeof value === "number") return null
+        // console.log(value, "value", keys[index], value, status, typeof value);
         return value ? <FeedbackSection key={index} label={keys[index]!} content={value as { [key: string]: string | string[] }} status={status} /> : null
     })
 

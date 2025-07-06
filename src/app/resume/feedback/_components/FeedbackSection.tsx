@@ -20,16 +20,41 @@ export const FeedbackSection = ({ label, content, status }: { label: string, con
 
     // console.log(data, "data!!");
 
+    // console.log((data || []).length, "data length", label);
+
     return (
         <div className="my-4 rounded-md shadow-md" style={{ display: "flex", flexDirection: "column" }}>
             <h3 className="font-bold text-3xl text-blue-200 uppercase">{label}</h3>
+            {/* {
+                label === "ats_score" || label === "ats" && (
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="p-4 bg-transparent rounded-md shadow-md">
+                            <h3 className="text-xl font-bold text-amber-400 capitalize">Before</h3>
+                            <p className="text-blue-50">{content?.before}</p>
+                        </div>
+                        <div className="p-4 bg-transparent rounded-md shadow-md">
+                            <h3 className="text-xl font-bold text-amber-400 capitalize">After</h3>
+                            <p className="text-blue-50">{content?.after}</p>
+                        </div>
+                    </div>
+                )
+            } */}
+            {
+                label === "ats_score" || label === "ats" && (
+                    <div className="p-4 bg-transparent rounded-md shadow-md">
+                        <h3 className="text-xl font-bold text-amber-400 capitalize">Before improvements</h3>
+                        <p className="text-blue-50">{content?.before} / 10</p>
+                    </div>
+                )
+            }
             {
                 status === "unauthenticated" && label !== "education" ? (
                     <p className="text-center text-lg text-gray-600">Sign in to view feedback</p>
                 ) : (
-                    <div 
+                    <div
                         // className={`grid ${data?.length > 2 ? "grid-cols-3" : data?.length > 1 ? "grid-cols-2" : "grid-cols-1"} gap-4`}
-                        className={`grid ${(data || []).length <= 4 ? `grid-cols-${(data || []).length.toString()}` : "grid-cols-4"} gap-10`}
+                        // className={`grid ${(data || []).length <= 4 ? `grid-cols-${(data || []).length.toString()}` : "grid-cols-4"} gap-10`}
+                        className={`grid ${((data || []).length <= 4 && !label.includes("ats")) ? `grid-cols-${(data || []).length.toString()}` : label.includes("ats") ? "grid-cols-2" : "grid-cols-4"} gap-10`}
                     >
                         {
                             data.map(([key, value]) => {
@@ -38,7 +63,7 @@ export const FeedbackSection = ({ label, content, status }: { label: string, con
                                 } else if (Array.isArray(value)) {
                                     // console.log(value, "value>><<");
                                     return <FeedbackSectionAsArray key={key} label={key} content={value} />
-                                } 
+                                }
                                 // else if (typeof value === 'object') {
                                 //     for(let key in value as any) {
                                 //         if (typeof value[key] === 'string') {
@@ -58,8 +83,8 @@ export const FeedbackSection = ({ label, content, status }: { label: string, con
                     </div>
                 )
             }
-            {
-                label === "ats_score" && (
+            {/* {
+                label === "ats_score" || label === "ats" && (
                     <div className="grid grid-cols-2 gap-4">
                         <div className="p-4 bg-transparent rounded-md shadow-md">
                             <h3 className="text-xl font-bold text-amber-400 capitalize">Before</h3>
@@ -69,6 +94,14 @@ export const FeedbackSection = ({ label, content, status }: { label: string, con
                             <h3 className="text-xl font-bold text-amber-400 capitalize">After</h3>
                             <p className="text-blue-50">{content?.after}</p>
                         </div>
+                    </div>
+                )
+            } */}
+            {
+                label === "ats_score" || label === "ats" && (
+                    <div className="p-4 bg-transparent rounded-md shadow-md">
+                        <h3 className="text-xl font-bold text-amber-400 capitalize">After improvements</h3>
+                        <p className="text-blue-50">{content?.after} / 10</p>
                     </div>
                 )
             }
@@ -98,9 +131,9 @@ const FeedbackSectionAsArray = ({ label, content }: { label: string, content: st
     return (
         <div className="space-y-2">
             <h3 className="text-lg font-semibold text-amber-400 capitalize">{label}</h3>
-            <ul 
+            <ul
                 className="list-disc pl-4"
-                // className={`list-disc pl-4 grid ${(content || []).length <= 2 ? `grid-cols-${(content || []).length.toString()}` : "grid-cols-2"} gap-4`}
+            // className={`list-disc pl-4 grid ${(content || []).length <= 2 ? `grid-cols-${(content || []).length.toString()}` : "grid-cols-2"} gap-4`}
             >
                 {content.map((item, index) => (
                     <li key={index} className="text-blue-50">{item}</li>

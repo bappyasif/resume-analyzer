@@ -8,7 +8,7 @@ export const HeaderMenuNavLinks = () => {
     ))
 
     return (
-        <ul className="flex items-center space-x-10">
+        <ul className="flex items-center space-x-10 justify-end w-2/3">
             {navsMarkups()}
         </ul>
     )

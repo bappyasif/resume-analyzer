@@ -52,7 +52,8 @@ export const resumeRouter = createTRPCRouter({
       const { text, role } = input;
       const response = await fetch(
         // 'http://localhost:3001/resume-gemini'
-        'http://localhost:3001/resume-gemini/extraction'
+        // 'http://localhost:3001/resume-gemini/extraction'
+        'http://localhost:3003/resume-analysis/'
         , {
           method: 'POST',
           headers: {
@@ -77,7 +78,8 @@ export const resumeRouter = createTRPCRouter({
       const { text, role } = input;
       const response = await fetch(
         // 'http://localhost:3001/resume-gemini'
-        'http://localhost:3001/resume-gemini/feedback',
+        // 'http://localhost:3001/resume-gemini/feedback',
+        'http://localhost:3003/resume-feedback',
         {
           method: 'POST',
           headers: {

@@ -3,12 +3,13 @@
 import { signIn, signOut, useSession } from 'next-auth/react'
 import React from 'react'
 import { AiFillOpenAI, AiOutlineProfile, AiFillProfile, AiOutlineMenuUnfold, AiOutlineMenu } from "react-icons/ai"
-import {BiLogIn, BiLogOut} from "react-icons/bi"
+import { BiLogIn, BiLogOut } from "react-icons/bi"
 import { useToToggleBoolean } from '~/hooks/useToToggleBoolean'
 import { Navigations } from './Navigations'
 import { useToDetectClickedOutside } from '~/hooks/useToClickedOutside'
 import { NavigationsMenu } from './NavigationsMenu'
 import { HeaderMenuNavLinks } from './HeaderMenuNavLinks'
+import { ThemeToggle } from '~/components/ThemeToggle'
 // import { signIn, signOut } from '~/server/auth'
 
 export const Header = () => {
@@ -16,21 +17,27 @@ export const Header = () => {
 
     return (
         <header className="flex items-center justify-between p-4 bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg">
-            <p className="text-white font-bold text-xl flex items-center">
-                LOGO <AiFillOpenAI className="ml-2 text-2xl" />
-            </p>
+            <div className='flex items-center space-x-4 w-full'>
+                <p className="text-white font-bold text-xl flex items-center">
+                    LOGO <AiFillOpenAI className="ml-2 text-2xl" />
+                </p>
 
-            <HeaderMenuNavLinks />
+                <HeaderMenuNavLinks />
+            </div>
 
-            <NavigationsMenu />
+            <div className="flex items-center space-x-4 w-1/4 justify-end">
+                <ThemeToggle />
+
+                <NavigationsMenu />
+            </div>
 
             {/* <NavigationsMenu /> */}
             {/* <div className="flex items-center space-x-4"> */}
-                {/* <Profile status={status} /> */}
-                {/* <AiOutlineMenu className="text-white text-2xl hover:text-gray-300 transition-colors duration-200" /> */}
-                {/* <Menu /> */}
-                {/* <NavigationsMenu /> */}
-                {/* <DropdownMenuDemo /> */}
+            {/* <Profile status={status} /> */}
+            {/* <AiOutlineMenu className="text-white text-2xl hover:text-gray-300 transition-colors duration-200" /> */}
+            {/* <Menu /> */}
+            {/* <NavigationsMenu /> */}
+            {/* <DropdownMenuDemo /> */}
             {/* </div> */}
         </header>
     )

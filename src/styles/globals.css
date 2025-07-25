@@ -46,7 +46,150 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+/* ==================================================
+   GLOBAL COLOR THEME (OKLCH) for ShadCN + Tailwind
+   Matches your screenshot's deep purple + cyan UI
+   ================================================== */
+
 :root {
+  /* Default fallback (used if no light/dark applied) */
+  --background: oklch(0.985 0 0);
+  /* light mode white */
+  --foreground: oklch(0.145 0 0);
+  /* near-black text */
+
+  --card: oklch(0.97 0 0);
+  /* white card */
+  --card-foreground: oklch(0.145 0 0);
+  /* dark text */
+
+  --popover: oklch(0.97 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+
+  --primary: oklch(0.65 0.16 190);
+  /* cyan */
+  --primary-foreground: oklch(0.145 0 0);
+  /* dark fg on button */
+
+  --secondary: oklch(0.94 0 0);
+  /* light gray */
+  --secondary-foreground: oklch(0.145 0 0);
+  /* dark text */
+
+  --muted: oklch(0.94 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  /* medium gray */
+
+  --accent: oklch(0.9 0 0);
+  --accent-foreground: oklch(0.145 0 0);
+
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(0.2 0 0 / 10%);
+  --input: oklch(0.2 0 0 / 15%);
+  --ring: oklch(0.5 0 0);
+
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+
+  --sidebar: oklch(0.97 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.145 0 0);
+  --sidebar-accent: oklch(0.9 0 0);
+  --sidebar-accent-foreground: oklch(0.145 0 0);
+  --sidebar-border: oklch(0.2 0 0 / 10%);
+  --sidebar-ring: oklch(0.5 0 0);
+}
+
+/* ==================================================
+   LIGHT MODE
+   (auto-applied when user's system is in light mode)
+   ================================================== */
+:root.light {
+  --background: oklch(0.985 0 0);
+  /* white */
+  --foreground: oklch(0.145 0 0);
+  /* black text */
+
+  --card: oklch(0.97 0 0);
+  /* white card */
+  --card-foreground: oklch(0.145 0 0);
+
+  --popover: oklch(0.97 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+
+  --primary: oklch(0.65 0.16 190);
+  /* cyan */
+  --primary-foreground: oklch(0.145 0 0);
+  /* black */
+
+  --secondary: oklch(0.94 0 0);
+  /* light gray */
+  --secondary-foreground: oklch(0.145 0 0);
+
+  --muted: oklch(0.94 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+
+  --accent: oklch(0.9 0 0);
+  --accent-foreground: oklch(0.145 0 0);
+}
+
+/* ==================================================
+   DARK MODE (screenshot match)
+   ================================================== */
+:root.dark {
+  --background: oklch(0.15 0.05 300);
+  /* #140038 deep purple */
+  --foreground: oklch(0.985 0 0);
+  /* white */
+
+  --card: oklch(0.22 0.05 300);
+  /* #1f043c */
+  --card-foreground: oklch(0.985 0 0);
+
+  --popover: oklch(0.22 0.05 300);
+  --popover-foreground: oklch(0.985 0 0);
+
+  --primary: oklch(0.92 0.22 190);
+  /* #00e6e6 */
+  --primary-foreground: oklch(0.15 0.05 300);
+  /* dark purple text */
+
+  --secondary: oklch(0.28 0.05 300);
+  /* medium purple */
+  --secondary-foreground: oklch(0.985 0 0);
+  /* white */
+
+  --muted: oklch(0.25 0.05 300);
+  /* ≈ #0c0026 */
+  --muted-foreground: oklch(0.7 0.01 280);
+  /* light gray subtext */
+
+  --accent: oklch(0.28 0.05 300);
+  /* #3c017a */
+  --accent-foreground: oklch(0.985 0 0);
+
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(0.3 0.02 300 / 15%);
+  --input: oklch(0.3 0.02 300 / 20%);
+  --ring: oklch(0.6 0.02 300);
+
+  --sidebar: oklch(0.22 0.05 300);
+  /* same as card */
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.52 0.23 264.376);
+  /* bright blue-violet */
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.28 0.05 300);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.3 0.02 300 / 15%);
+  --sidebar-ring: oklch(0.6 0.02 300);
+}
+
+/* :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -113,12 +256,13 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-}
+} */
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

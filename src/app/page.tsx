@@ -8,6 +8,7 @@ import StatisticsSection from "./_components/Statistics";
 import HowItWorksSection from "./_components/HowItWorks";
 import FAQSection from "./_components/Faq";
 import { FeatureCards } from "./_components/FeatureCards";
+import { Button } from "~/components/ui/button";
 // import { Navigations } from "./_components/Navigations";
 // import { PdfUploader } from "./_components/pdfUploader";
 
@@ -21,14 +22,17 @@ export default async function Home() {
   return (
     <HydrateClient>
       {/* <Navigations /> */}
-      <main className="flex min-h-screen flex-col items-center justify-center bg-[#2E026D] p-4 gap-3.5">
+      <main
+        // className="flex min-h-screen flex-col items-center justify-center bg-[#2E026D] p-4 gap-3.5"
+        className="flex min-h-screen flex-col items-center justify-center p-4 gap-3.5 pb-8"
+      >
         {/* {session?.user && <LatestPost />} */}
         <MainSection />
         {/* <StatisticsSection /> */}
         <section className="py-16 px-4 bg-transparent w-full">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Features</h2>
-            <p className="text-lg text-gray-300">Why choose us?</p>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Features</h2>
+            <p className="text-lg text-foreground/80">Why choose us?</p>
           </div>
           <div className="max-w-4xl mx-auto">
             <FeatureCards />
@@ -58,9 +62,19 @@ export default async function Home() {
         {/* <PdfUploader /> */}
 
         {/* <Link href="/pdf-parse">pdf parse</Link> */}
-        <Link href="/resume/upload" className="flex justify-center px-8 py-4 bg-blue-600 text-white font-bold text-xl shadow-lg hover:bg-blue-700 transition duration-300 mt-6 w-1/4 text-center items-center my-4 rounded-2xl">
+        {/* <Link href="/resume/upload" className="flex justify-center px-8 py-4 bg-blue-600 text-white font-bold text-xl shadow-lg hover:bg-blue-700 transition duration-300 mt-6 w-1/4 text-center items-center my-4 rounded-2xl">
           Upload Resume
-        </Link>
+        </Link> */}
+
+        <Button variant={"default"} size={"lg"} className="p-8 text-lg font-semibold rounded-lg inline-flex items-center gap-2 cursor-pointer">
+          <Link
+            href="/resume/upload"
+            className="flex justify-center px-8 py-4 font-bold text-xl shadow-lg transition duration-300 mt-6 w-1/4 text-center items-center my-4 rounded-2xl"
+          // className="flex justify-center px-8 py-4 bg-blue-600 text-white font-bold text-xl shadow-lg hover:bg-blue-700 transition duration-300 mt-6 w-1/4 text-center items-center my-4 rounded-2xl"
+          >
+            Upload Resume
+          </Link>
+        </Button>
       </main>
     </HydrateClient>
   );

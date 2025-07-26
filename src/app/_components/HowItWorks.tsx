@@ -1,5 +1,7 @@
 import { AiFillFileText, AiFillStar, AiOutlineDownload } from "react-icons/ai"
 import { BiBadgeCheck } from "react-icons/bi"
+import type { IconType } from "react-icons/lib"
+import { Card, CardContent, CardFooter, CardHeader } from "~/components/ui/card"
 
 export default function HowItWorksSection() {
     const steps = [
@@ -42,26 +44,75 @@ export default function HowItWorksSection() {
                 {steps.map((step, index) => {
                     const IconComponent = step.icon
                     return (
-                        <div key={index} className="text-center">
-                            {/* Step Number */}
-                            <div className="inline-block bg-teal-100 text-teal-600 font-bold text-lg px-4 py-2 rounded-lg mb-6">
-                                {step.number}
-                            </div>
+                        <StepCard key={index} number={step.number} icon={IconComponent} title={step.title} description={step.description} />
+                        // <div key={index} className="text-center">
+                        //     {/* Step Number */}
+                        //     <div className="inline-block bg-teal-100 text-teal-600 font-bold text-lg px-4 py-2 rounded-lg mb-6">
+                        //         {step.number}
+                        //     </div>
 
-                            {/* Icon */}
-                            <div className="flex justify-center mb-6">
-                                <IconComponent className="w-12 h-12 text-white" />
-                            </div>
+                        //     {/* Icon */}
+                        //     <div className="flex justify-center mb-6">
+                        //         <IconComponent className="w-12 h-12 text-white" />
+                        //     </div>
 
-                            {/* Title */}
-                            <h3 className="text-xl md:text-2xl font-bold text-white mb-4">{step.title}</h3>
+                        //     {/* Title */}
+                        //     <h3 className="text-xl md:text-2xl font-bold text-white mb-4">{step.title}</h3>
 
-                            {/* Description */}
-                            <p className="text-gray-300 leading-relaxed">{step.description}</p>
-                        </div>
+                        //     {/* Description */}
+                        //     <p className="text-gray-300 leading-relaxed">{step.description}</p>
+                        // </div>
                     )
                 })}
             </div>
         </section>
     )
+}
+
+const StepCard = ({ number, icon, title, description }: { number: string, icon: IconType, title: string, description: string }) => {
+    const IconComponent = icon
+    return (
+        <Card className="backdrop-blur-md border-foreground/20 hover:bg-primary/20 transition-all duration-300 hover:scale-105">
+            <CardHeader>
+                {/* Step Number */}
+                <div className="inline-block bg-teal-100 text-teal-600 font-bold text-lg px-4 py-2 rounded-lg mb-6 text-center">
+                    {number}
+                </div>
+            </CardHeader>
+
+            <CardContent>
+                {/* Icon */}
+                <div className="flex justify-center mb-6">
+                    {<IconComponent className="w-12 h-12 text-white" />}
+                </div>
+
+                {/* Title */}
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-4 text-center">{title}</h3>
+            </CardContent>
+
+            <CardFooter>
+                {/* Description */}
+                <p className="text-gray-300 leading-relaxed text-center">{description}</p>
+            </CardFooter>
+        </Card>
+    )
+    // return (
+    //     <div className="text-center">
+    //         {/* Step Number */}
+    //         <div className="inline-block bg-teal-100 text-teal-600 font-bold text-lg px-4 py-2 rounded-lg mb-6">
+    //             {number}
+    //         </div>
+
+    //         {/* Icon */}
+    //         <div className="flex justify-center mb-6">
+    //             {<IconComponent className="w-12 h-12 text-white" />}
+    //         </div>
+
+    //         {/* Title */}
+    //         <h3 className="text-xl md:text-2xl font-bold text-white mb-4">{title}</h3>
+
+    //         {/* Description */}
+    //         <p className="text-gray-300 leading-relaxed">{description}</p>
+    //     </div>
+    // )
 }

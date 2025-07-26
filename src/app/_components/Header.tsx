@@ -16,7 +16,10 @@ export const Header = () => {
     // const { status } = useSession()
 
     return (
-        <header className="flex items-center justify-between p-4 bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg">
+        <header 
+            // className="flex items-center justify-between p-4 bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg"
+            className="flex items-center justify-between p-4 bg-gradient-to-tr from-secondary/40 to-primary/60 shadow-lg"
+        >
             <div className='flex items-center space-x-4 w-full'>
                 <p className="text-white font-bold text-xl flex items-center">
                     LOGO <AiFillOpenAI className="ml-2 text-2xl" />

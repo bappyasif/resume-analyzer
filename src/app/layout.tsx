@@ -33,7 +33,10 @@ export default async function RootLayout({
       // className={`${geist.variable}`}
       suppressHydrationWarning
     >
-      <body className="bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
+      <body 
+        // className="bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white"
+        className="bg-gradient-to-b from-background to-secondary text-foreground"
+      >
         {/* <Header /> */}
         {/* <Navigations /> */}
         {/* <AuthProvider session={session}> */}

@@ -1,9 +1,16 @@
 import Link from "next/link"
+import { Button } from "~/components/ui/button"
 
 export const HeaderMenuNavLinks = () => {
     const navsMarkups = () => navs.map((nav) => (
         <li key={nav.name}>
-            <Link href={nav.href} className="text-white hover:text-gray-300 transition-colors duration-200 text-lg font-semibold underline-offset-4 hover:no-underline">{nav.name}</Link>
+            <Button variant="link" className="p-0">
+                <Link
+                    href={nav.href}
+                    className="transition-colors duration-200 text-xl font-semibold underline-offset-4 hover:no-underline hover:text-secondary/80 decoration-accent"
+                // className="text-white hover:text-gray-300 transition-colors duration-200 text-lg font-semibold underline-offset-4 hover:no-underline"
+                >{nav.name}</Link>
+            </Button>
         </li>
     ))
 

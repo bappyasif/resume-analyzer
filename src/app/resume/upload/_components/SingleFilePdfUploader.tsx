@@ -96,7 +96,7 @@ export default function SinglePdfUploadPage() {
 
     useEffect(() => {
         if (!file) return;
-// const blob: Blob = new Blob([file], { type: file.type });
+        // const blob: Blob = new Blob([file], { type: file.type });
         // handleFile(file)
         // console.log(pdf, "pdf text", file?.type, file?.name, file?.size, file.name)
         handleFile(file.data)
@@ -117,8 +117,8 @@ export default function SinglePdfUploadPage() {
                             <FileText className="h-8 w-8 text-red-600" />
                         </div>
                     </div>
-                    <h1 className="text-3xl font-bold tracking-tight mb-2 text-primary-foreground">PDF Upload</h1>
-                    <p className="text-muted-foreground text-sm">Upload your PDF document securely. Supports PDF files up to 5MB.</p>
+                    <h1 className="text-3xl font-bold tracking-tight mb-2 text-foreground">PDF Upload</h1>
+                    <p className="text-sm">Upload your PDF document securely. Supports PDF files up to 5MB.</p>
                 </div>
 
                 {/* Drop Zone */}
@@ -143,7 +143,7 @@ export default function SinglePdfUploadPage() {
                                     <Upload className="h-8 w-8" />
                                 </div>
                                 <div>
-                                    <h3 className="text-lg font-semibold mb-2 text-primary-foreground">
+                                    <h3 className="text-lg font-semibold mb-2 text-muted-foreground">
                                         {isDragActive ? "Drop PDF file here" : "Upload your PDF document"}
                                     </h3>
                                     <p className="text-muted-foreground text-sm mb-4">Drag and drop a PDF file here, or click to browse</p>
@@ -154,7 +154,7 @@ export default function SinglePdfUploadPage() {
                                     </div>
                                 </div>
                                 <Button variant="outline" className="mt-4">
-                                    <FolderOpen className="h-4 w-4 mr-2 text-primary" />
+                                    <FolderOpen className="h-4 w-4 mr-2" />
                                     Browse Files
                                 </Button>
                             </div>

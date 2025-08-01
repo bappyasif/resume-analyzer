@@ -71,22 +71,23 @@ const FeaturesPage = () => {
                         {features.map((feature, index) => (
                             <Card
                                 key={index}
-                                className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105 group"
+                                // className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105 group"
+                                className="backdrop-blur-md hover:bg-card/40 border-2 border-card hover:border-2 hover:border-accent transition-all duration-300 hover:scale-105 group"
                             >
                                 <CardContent className="p-8">
                                     <div className="flex items-start space-x-6">
                                         <div
                                             className={`w-16 h-16 bg-gradient-to-br ${feature.gradient} rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}
                                         >
-                                            <feature.icon className="w-8 h-8 text-white" />
+                                            <feature.icon className="w-8 h-8 text-foreground" />
                                         </div>
                                         <div className="flex-1">
-                                            <h3 className="text-2xl font-bold text-white mb-3">{feature.title}</h3>
-                                            <p className="text-white/80 mb-6 leading-relaxed">{feature.description}</p>
+                                            <h3 className="text-2xl font-bold text-foreground mb-3">{feature.title}</h3>
+                                            <p className="text-foreground/80 mb-6 leading-relaxed">{feature.description}</p>
                                             <ul className="space-y-2">
                                                 {feature.benefits.map((benefit, benefitIndex) => (
-                                                    <li key={benefitIndex} className="flex items-center text-white/70">
-                                                        <CheckCircle className="w-4 h-4 text-green-400 mr-3 flex-shrink-0" />
+                                                    <li key={benefitIndex} className="flex items-center text-foreground/70">
+                                                        <CheckCircle className="w-4 h-4 text-accent-foreground mr-3 flex-shrink-0" />
                                                         {benefit}
                                                     </li>
                                                 ))}
@@ -102,7 +103,9 @@ const FeaturesPage = () => {
             {/* <FeatureCards /> */}
             <Link
                 href="/resume/upload"
-                className="inline-block px-8 py-5 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-lg shadow-lg hover:from-blue-600 hover:to-purple-700 transition duration-300 transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-offset-blue-200 mt-8 w-full text-center"
+                // className="inline-block px-8 py-5 font-bold rounded-lg shadow-lg transition bg-sidebar-primary duration-300 transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-offset-blue-200 mt-8 w-full text-center"
+                className="inline-block px-8 py-5 bg-gradient-to-r from-primary to-sidebar-primary font-bold rounded-lg shadow-lg hover:from-sidebar-primary hover:to-primary transition duration-300 transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-offset-blue-200 mt-8 w-full text-center text-muted"
+                // className="inline-block px-8 py-5 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-lg shadow-lg hover:from-blue-600 hover:to-purple-700 transition duration-300 transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-offset-blue-200 mt-8 w-full text-center"
             >
                 Upload Resume
             </Link>

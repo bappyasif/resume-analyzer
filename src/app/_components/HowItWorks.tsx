@@ -35,8 +35,8 @@ export default function HowItWorksSection() {
         <section className="py-40 px-4 bg-transparent w-full">
             {/* Section Header */}
             <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">How It Works</h2>
-                <p className="text-lg text-gray-300">Three simple steps to your perfect cover letter</p>
+                <h2 className="text-4xl md:text-5xl font-bold mb-4">How It Works</h2>
+                <p className="text-lg text-muted-foreground">Three simple steps to your perfect cover letter</p>
             </div>
 
             {/* Steps Grid */}
@@ -72,27 +72,34 @@ export default function HowItWorksSection() {
 const StepCard = ({ number, icon, title, description }: { number: string, icon: IconType, title: string, description: string }) => {
     const IconComponent = icon
     return (
-        <Card className="backdrop-blur-md border-foreground/20 hover:bg-primary/20 transition-all duration-300 hover:scale-105">
-            <CardHeader>
-                {/* Step Number */}
+        <Card 
+            // className="backdrop-blur-md border-foreground/20 hover:bg-primary/20 transition-all duration-300 hover:scale-105"
+            className="backdrop-blur-md hover:border-foreground/20 hover:bg-card/20 transition-all duration-300 hover:scale-105"
+        >
+            {/* <CardHeader>
+                {/* Step Number /}
                 <div className="inline-block bg-teal-100 text-teal-600 font-bold text-lg px-4 py-2 rounded-lg mb-6 text-center">
                     {number}
                 </div>
+            </CardHeader> */}
+            <CardHeader className="font-bold text-lg px-4 py-2 rounded-lg mb-6 text-center bg-sidebar-accent mx-4">
+                {/* Step Number */}
+                {number}
             </CardHeader>
 
             <CardContent>
                 {/* Icon */}
                 <div className="flex justify-center mb-6">
-                    {<IconComponent className="w-12 h-12 text-white" />}
+                    {<IconComponent className="w-12 h-12 text-muted-foreground" />}
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl md:text-2xl font-bold text-white mb-4 text-center">{title}</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4 text-center">{title}</h3>
             </CardContent>
 
             <CardFooter>
                 {/* Description */}
-                <p className="text-gray-300 leading-relaxed text-center">{description}</p>
+                <p className="text-muted-foreground leading-relaxed text-center">{description}</p>
             </CardFooter>
         </Card>
     )

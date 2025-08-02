@@ -32,7 +32,7 @@ export default async function Home() {
         <section className="py-16 px-4 bg-transparent w-full">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Features</h2>
-            <p className="text-lg text-foreground/80">Why choose us?</p>
+            <p className="text-lg text-muted-foreground">Why choose us?</p>
           </div>
           <div className="max-w-4xl mx-auto">
             <FeatureCards />

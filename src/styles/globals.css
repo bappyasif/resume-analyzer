@@ -138,13 +138,18 @@
 } */
 :root.light {
   /* === Base Background & Text === */
-  --background: oklch(98% 0.005 280);
+  /* --background: oklch(98% 0.005 280); */
   /* Soft off-white */
+  background: oklch(60% 0.22 289);
+
   --foreground: oklch(18% 0.02 300);
   /* Very dark purple-gray */
 
   /* === Surface Layers === */
-  --card: oklch(96% 0.004 290);
+  /* --card: oklch(96% 0.004 290); */
+  /* --card: oklch(94% 0.005 290); */
+  --card: oklch(93% 0.005 290);
+
   /* Light gray card */
   --card-foreground: oklch(18% 0.02 300);
   /* Consistent text */
@@ -154,7 +159,8 @@
   --popover-foreground: oklch(20% 0.015 290);
 
   /* === Primary CTA / Highlights === */
-  --primary: oklch(63% 0.15 289);
+  /* --primary: oklch(63% 0.15 289); */
+  --primary: oklch(65% 0.20 289);
   /* Cyan-purple hybrid */
   --primary-foreground: oklch(98.5% 0 0);
   /* White or very light */
@@ -168,7 +174,9 @@
   /* === Muted Text / Labels === */
   --muted: oklch(94% 0.008 290);
   /* Light gray */
-  --muted-foreground: oklch(50% 0.01 280);
+  /* --muted-foreground: oklch(50% 0.01 280); */
+  /* Light purple-gray */
+  --muted-foreground: oklch(45% 0.01 280);
   /* Light purple-gray */
 
   /* === Accent / Hover / Border States === */
@@ -182,7 +190,8 @@
   /* Rich alert red */
 
   /* === Borders / Inputs / Focus === */
-  --border: oklch(90% 0.01 300 / 30%);
+  /* --border: oklch(90% 0.01 300 / 30%); */
+  --border: oklch(90% 0.01 300 / 40%);
   /* Soft gray border */
   --input: oklch(94% 0.01 300 / 35%);
   /* Slightly filled field */
@@ -190,8 +199,12 @@
   /* Bright violet ring */
 
   /* === Sidebar / Navigation === */
-  --sidebar: oklch(96% 0.004 290);
+  /* --sidebar: oklch(96% 0.004 290); */
   /* Match card */
+  /* --sidebar: oklch(96% 0.004 290); header background */
+  --sidebar: oklch(94% 0.01 290);
+
+
   --sidebar-foreground: oklch(25% 0.02 290);
   /* Dark text */
 

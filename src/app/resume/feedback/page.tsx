@@ -9,6 +9,7 @@ import { api } from '~/trpc/react';
 import { renderToString } from 'react-dom/server';
 import { FeedbackData } from './_components/FeedbackData';
 import { useToMakePdfDownloadable } from './_hooks/useToMakePdfDownloadable';
+import { Button } from '~/components/ui/button';
 
 const ResumeFeedback = () => {
     // const { state } = useAppCtx()
@@ -98,17 +99,21 @@ const ResumeFeedback = () => {
 
     return (
         <main className="flex flex-col items-center justify-center min-h-screen p-20">
-            <h1 className="text-6xl font-bold text-white">Resume Feedback</h1>
+            <h1 
+                // className="text-6xl font-bold text-white"
+                className="text-6xl font-bold"
+            >Resume Feedback</h1>
 
             <div className="my-20">
                 {
                     htmlContent ? (
-                        <button
-                            onClick={handleDownload}
-                            className="px-6 py-4 bg-white text-blue-600 font-semibold rounded shadow hover:bg-blue-100 transition duration-300"
-                        >
-                            Download Feedback
-                        </button>
+                        <Button onClick={handleDownload} size={"lg"} variant={"default"} className="min-w-2xs">Download Feedback</Button>
+                        // <button
+                        //     onClick={handleDownload}
+                        //     className="px-6 py-4 bg-white text-blue-600 font-semibold rounded shadow hover:bg-blue-100 transition duration-300"
+                        // >
+                        //     Download Feedback
+                        // </button>
                     ) : (
                         resume?.parsedText
                             ? (

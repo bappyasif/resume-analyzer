@@ -23,8 +23,11 @@ export const FeedbackSection = ({ label, content, status }: { label: string, con
     // console.log((data || []).length, "data length", label);
 
     return (
-        <div className="my-4 rounded-md shadow-md" style={{ display: "flex", flexDirection: "column" }}>
-            <h3 className="font-bold text-3xl text-blue-200 uppercase">{label}</h3>
+        <div className="my-4 rounded-md shadow-md gap-2" style={{ display: "flex", flexDirection: "column" }}>
+            <h3 
+                // className="font-bold text-3xl text-blue-200 uppercase"
+                className="font-bold text-3xl uppercase"
+            >{label}</h3>
             {/* {
                 label === "ats_score" || label === "ats" && (
                     <div className="grid grid-cols-2 gap-4">
@@ -42,8 +45,13 @@ export const FeedbackSection = ({ label, content, status }: { label: string, con
             {
                 label === "ats_score" || label === "ats" && (
                     <div className="p-4 bg-transparent rounded-md shadow-md">
-                        <h3 className="text-xl font-bold text-amber-400 capitalize">Before improvements</h3>
-                        <p className="text-blue-50">{content?.before} / 10</p>
+                        <h3 
+                            // className="text-xl font-bold text-amber-400 capitalize"
+                            className="text-xl font-bold capitalize text-sidebar-primary"
+                        >Before improvements</h3>
+                        <p 
+                            // className="text-blue-50"
+                        >{content?.before} / 10</p>
                     </div>
                 )
             }
@@ -54,7 +62,7 @@ export const FeedbackSection = ({ label, content, status }: { label: string, con
                     <div
                         // className={`grid ${data?.length > 2 ? "grid-cols-3" : data?.length > 1 ? "grid-cols-2" : "grid-cols-1"} gap-4`}
                         // className={`grid ${(data || []).length <= 4 ? `grid-cols-${(data || []).length.toString()}` : "grid-cols-4"} gap-10`}
-                        className={`grid ${((data || []).length <= 4 && !label.includes("ats")) ? `grid-cols-${(data || []).length.toString()}` : label.includes("ats") ? "grid-cols-2" : "grid-cols-4"} gap-10`}
+                        className={`grid ${((data || []).length <= 4 && !label.includes("ats")) ? `grid-cols-${(data || []).length.toString()}` : label.includes("ats") ? "grid-cols-2" : "grid-cols-4"} gap-2`}
                     >
                         {
                             data.map(([key, value]) => {
@@ -100,8 +108,13 @@ export const FeedbackSection = ({ label, content, status }: { label: string, con
             {
                 label === "ats_score" || label === "ats" && (
                     <div className="p-4 bg-transparent rounded-md shadow-md">
-                        <h3 className="text-xl font-bold text-amber-400 capitalize">After improvements</h3>
-                        <p className="text-blue-50">{content?.after} / 10</p>
+                        <h3 
+                            // className="text-xl font-bold text-amber-400 capitalize"
+                            className="text-xl font-bold text-sidebar-primary capitalize"
+                        >After improvements</h3>
+                        <p 
+                            // className="text-blue-50"
+                        >{content?.after} / 10</p>
                     </div>
                 )
             }
@@ -115,9 +128,12 @@ const FeedbackSectionAsString = ({ label, content }: { label: string, content: s
     // label === "ats_score" && console.log(content, "content");
 
     return (
-        <div className="p-4 bg-transparent rounded-md shadow-md">
-            <h3 className="text-xl font-bold text-amber-400 capitalize">{label}</h3>
-            <p className="text-blue-50">{content}</p>
+        <div className="p-4 bg-transparent rounded-md shadow-md space-y-2">
+            <h3 
+                // className="text-xl font-bold text-amber-400 capitalize"
+                className="text-xl font-bold capitalize text-sidebar-primary"
+            >{label}</h3>
+            <p className="">{content}</p>
         </div>
     )
 }
@@ -129,14 +145,19 @@ const FeedbackSectionAsArray = ({ label, content }: { label: string, content: st
 
 
     return (
-        <div className="space-y-2">
-            <h3 className="text-lg font-semibold text-amber-400 capitalize">{label}</h3>
+        <div className="space-y-2 p-4">
+            <h3 
+                // className="text-lg font-semibold text-amber-400 capitalize"
+                className="text-lg font-semibold text-sidebar-primary capitalize"
+            >{label}</h3>
             <ul
                 className="list-disc pl-4"
             // className={`list-disc pl-4 grid ${(content || []).length <= 2 ? `grid-cols-${(content || []).length.toString()}` : "grid-cols-2"} gap-4`}
             >
                 {content.map((item, index) => (
-                    <li key={index} className="text-blue-50">{item}</li>
+                    <li key={index} 
+                        // className="text-blue-50"
+                    >{item}</li>
                 ))}
             </ul>
         </div>

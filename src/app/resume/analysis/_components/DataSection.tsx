@@ -5,6 +5,7 @@ import { useToResumeDataExtraction } from '../_hooks/useToResumeDataExtraction'
 import { useAppCtx } from '~/contexts/app';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { Button } from '~/components/ui/button';
 
 export const DataSection = ({ pdfText }: { pdfText: string }) => {
     const { state } = useAppCtx();
@@ -46,10 +47,17 @@ export const DataSection = ({ pdfText }: { pdfText: string }) => {
                     </div>
                 )}
                 {(analysis || data) && !isPending && (
-                    <Link href="/resume/feedback"
+                    <Button variant="default" size="lg" className="min-w-2xs">
+                        <Link href="/resume/feedback"
                         // className='text-center text-white text-2xl font-bold w-full'
-                        className="px-6 py-4 bg-white/80 text-blue-600 font-semibold rounded shadow hover:bg-blue-100 transition duration-300"
+                        // className="px-6 py-4 bg-white/80 text-blue-600 font-semibold rounded shadow hover:bg-blue-100 transition duration-300"
+                        className='text-2xl'
                     >View Feedback</Link>
+                    </Button>
+                    // <Link href="/resume/feedback"
+                    //     // className='text-center text-white text-2xl font-bold w-full'
+                    //     className="px-6 py-4 bg-white/80 text-blue-600 font-semibold rounded shadow hover:bg-blue-100 transition duration-300"
+                    // >View Feedback</Link>
                 )}
             </div>
 
@@ -62,21 +70,27 @@ export const DataSection = ({ pdfText }: { pdfText: string }) => {
 
             {(analysis || data) && !isPending ? (
                 <div className="space-y-10">
-                    <div className="space-y-2">
-                        <p className="font-bold">Name: {(analysis || data)?.name}</p>
-                        <p className="font-bold">Email: {(analysis || data)?.email}</p>
-                        <p className="font-bold">Phone: {(analysis || data)?.phone}</p>
+                    <div className="space-y-2 text-3xl font-sans">
+                        <p><span className='text-sidebar-primary font-medium'>Name:</span> {(analysis || data)?.name}</p>
+                        <p><span className='text-sidebar-primary font-medium'>Email:</span> {(analysis || data)?.email}</p>
+                        <p><span className='text-sidebar-primary font-medium'>Phone:</span> {(analysis || data)?.phone}</p>
                     </div>
 
                     <div className="space-y-2">
-                        <p className="font-bold text-3xl text-blue-200 uppercase">Experience</p>
+                        <p 
+                            // className="font-bold text-3xl text-blue-200 uppercase"
+                            className="font-bold text-3xl text-primary/90 uppercase"
+                        >Experience</p>
                         <div className={`grid ${(analysis || data)?.experience?.length <= 4 ? `grid-cols-${(analysis || data)?.experience?.length.toString()}` : "grid-cols-4"} gap-4`}>
                             {
                                 (analysis || data)?.experience?.map((exp: any, index: number) => (
                                     <div key={index} className="space-y-1">
-                                        <p className="font-bold">Position: {exp.title}</p>
-                                        <p className="font-bold">Company: {exp.company}</p>
-                                        <p className="font-bold">Start Date: {exp.dates}</p>
+                                        <p className="font-bold"><span className='text-primary font-extrabold
+                                        '>Position: </span>{exp.title}</p>
+                                        <p className="font-bold"><span className='text-primary font-extrabold
+                                        '>Company: </span>{exp.company}</p>
+                                        <p className="font-bold"><span className='text-primary font-extrabold
+                                        '>Start Date: </span>{exp.dates}</p>
                                         <p>{exp.responsibilities}</p>
                                     </div>
 
@@ -86,14 +100,19 @@ export const DataSection = ({ pdfText }: { pdfText: string }) => {
                     </div>
 
                     <div className="space-y-2">
-                        <p className="font-bold text-3xl text-blue-200 uppercase">Education</p>
+                        <p 
+                            // className="font-bold text-3xl text-blue-200 uppercase"
+                            className="font-bold text-3xl text-primary/90 uppercase"
+                        >Education</p>
                         <div className={`grid ${(analysis || data)?.education?.length <= 4 ? `grid-cols-${(analysis || data)?.education?.length.toString()}` : "grid-cols-4"} gap-4`}>
                             {
                                 (analysis || data)?.education?.map((edu: any, index: number) => (
-                                    <div key={index} className="space-y-1">
-                                        <p className="font-bold">{edu.degree}</p>
-                                        <p className="font-bold">{edu.institution}</p>
-                                        <p className="font-bold">{edu.dates}</p>
+                                    <div key={index} className="space-y-1 font-bold">
+                                        <p><span className='text-primary font-extrabold
+                                        ' >Degree: </span>{edu.degree}</p>
+                                        <p><span className='text-primary font-extrabold
+                                        '>Institution: </span>{edu.institution}</p>
+                                        <p>{edu.dates}</p>
                                     </div>
                                 ))
                             }
@@ -185,14 +204,17 @@ const ResumeSection = ({ label, content }: { label: string, content: string[] })
 
     return (
         <section className="my-4">
-            <h3 className="font-bold text-3xl text-blue-200 uppercase">{label}</h3>
+            <h3 
+                // className="font-bold text-3xl text-blue-200 uppercase"
+                className="font-bold text-3xl text-primary/90 uppercase"
+            >{label}</h3>
             <ul
                 // className="list-disc pl-4"
                 className={`list-disc pl-4 grid ${(content || []).length <= 4 ? `grid-cols-${(content || []).length.toString()}` : "grid-cols-4"} gap-4`}
             >
                 {
                     content.map((item, index) => (
-                        <li key={index} className="my-1">{item}</li>
+                        <li key={index} className="my-2">{item}</li>
                     ))
                 }
             </ul>

@@ -21,7 +21,7 @@ export const FeedbackData = ({ getHtml }: { getHtml: (htmlContent: string) => vo
 
     const markups = values?.map((value, index) => {
         // console.log(value, "value",  index, keys[index], value, status, typeof value);
-        // if(typeof value === "number") return null
+        if(typeof value === "number") return null
         // console.log(value, "value", keys[index], value, status, typeof value);
         return value ? <FeedbackSection key={index} label={keys[index]!} content={value as { [key: string]: string | string[] }} status={status} /> : null
     })
@@ -56,7 +56,7 @@ export const FeedbackData = ({ getHtml }: { getHtml: (htmlContent: string) => vo
                 }
 
                 {
-                    keys.length && values.length && <Link href="/" className="text-xl text-blue-600 underline hover:text-blue-800">Go back to resume upload</Link>
+                    keys.length && values.length && <Link href="/" className="text-xl text-primary underline hover:text-blue-800">Go back to resume upload</Link>
                 }
             </div>
 

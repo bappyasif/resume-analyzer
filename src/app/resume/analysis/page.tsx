@@ -15,7 +15,7 @@ const ResumeAnalysis = () => {
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-20">
-      <h1 className="text-6xl font-bold text-white">Resume Analysis</h1>
+      <h1 className="text-6xl font-bold text-sidebar-accent-foreground">Resume Analysis</h1>
 
       <br />
       <br />

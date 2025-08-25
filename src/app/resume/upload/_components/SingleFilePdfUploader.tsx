@@ -113,8 +113,8 @@ export default function SinglePdfUploadPage() {
                 {/* Header */}
                 <div className="text-center mb-8">
                     <div className="flex items-center justify-center mb-4">
-                        <div className="p-3 bg-transparent dark:bg-red-950 rounded-full">
-                            <FileText className="h-8 w-8 text-red-600" />
+                        <div className="p-3 bg-transparent rounded-full">
+                            <FileText className="h-8 w-8 text-accent" />
                         </div>
                     </div>
                     <h1 className="text-3xl font-bold tracking-tight mb-2 text-foreground">PDF Upload</h1>
@@ -167,8 +167,8 @@ export default function SinglePdfUploadPage() {
                     <Card className="bg-transparent">
                         <CardContent className="p-6">
                             <div className="flex items-center justify-between mb-4">
-                                <h3 className="text-lg font-semibold text-primary-foreground">Uploaded File</h3>
-                                <Button variant="outline" size="sm" onClick={removeFile} disabled={isUploading}>
+                                <h3 className="text-lg font-semibold">Uploaded File</h3>
+                                <Button variant="destructive" size="sm" onClick={removeFile} disabled={isUploading}>
                                     Remove File
                                 </Button>
                             </div>
@@ -176,7 +176,7 @@ export default function SinglePdfUploadPage() {
                             <div className="flex items-center space-x-4 p-4 border rounded-lg">
                                 {/* File Icon */}
                                 <div className="flex-shrink-0">
-                                    <div className="h-12 w-12 bg-red-50 dark:bg-red-950 rounded flex items-center justify-center">
+                                    <div className="h-12 w-12 bg-secondary rounded flex items-center justify-center">
                                         {getFileIcon()}
                                     </div>
                                 </div>
@@ -184,7 +184,7 @@ export default function SinglePdfUploadPage() {
                                 {/* File Info */}
                                 <div className="flex-1 min-w-0">
                                     <div className="flex items-center space-x-2 mb-1">
-                                        <p className="text-sm font-medium truncate text-primary-foreground">{file.data?.name}</p>
+                                        <p className="text-sm font-medium truncate text-muted-foreground">{file.data?.name}</p>
                                         {file.status === "completed" && <Check className="h-4 w-4 text-green-600" />}
                                         {file.status === "error" && <AlertCircle className="h-4 w-4 text-red-600" />}
                                     </div>
@@ -196,25 +196,36 @@ export default function SinglePdfUploadPage() {
                                 </div>
 
                                 {/* Remove Button */}
-                                <Button variant="ghost" size="sm" onClick={removeFile} disabled={file.status === "uploading"}>
-                                    <X className="h-4 w-4 text-primary-foreground" />
+                                <Button variant="ghost" size="sm" onClick={removeFile} disabled={file.status === "uploading"} className="hover:bg-accent hover:text-accent-foreground">
+                                    <X className="h-8 w-8 text-destructive" />
                                 </Button>
                             </div>
                         </CardContent>
                     </Card>
                 )}
 
+                {/* upload button */}
+                {
+                    file && file.status === "completed" && (
+                        <div className="flex justify-center mt-6">
+                            <Button onClick={handleNavigate} className="min-w-[27rem]" size={"lg"}>
+                                Analyze Resume
+                            </Button>
+                        </div>
+                    )
+                }
+
                 {/* Action Buttons */}
-                {file && (
+                {/* {file && (
                     <div className="flex justify-center space-x-4 mt-6">
-                        <Button variant="outline" onClick={removeFile} disabled={isUploading} className="text-primary">
+                        <Button variant="destructive" onClick={removeFile} disabled={isUploading} className="text-primary-foreground">
                             Remove File
                         </Button>
                         <Button disabled={isUploading || file.status !== "completed"} className="min-w-[120px]" onClick={handleNavigate}>
                             {isUploading ? "Processing..." : "Analyze Resume"}
                         </Button>
                     </div>
-                )}
+                )} */}
             </div>
         </div>
     )

@@ -104,6 +104,8 @@ const ResumeFeedback = () => {
                 className="text-6xl font-bold"
             >Resume Feedback</h1>
 
+            <h2 className='text-2xl mt-20 font-bold'>Role: {resume?.role}</h2>
+
             <div className="my-20">
                 {
                     htmlContent ? (

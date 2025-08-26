@@ -6,7 +6,7 @@ export const useToResumeDataExtraction = (pdfText: string) => {
     const {state, dispatch} = useAppCtx()
 
     const {resume} = state;
-    const {analysis} = resume;
+    const {analysis, role} = resume;
 
     const { mutate, data, isPending, error } = api.resume.extractDetails.useMutation({
         onSuccess: (data) => {
@@ -20,7 +20,7 @@ export const useToResumeDataExtraction = (pdfText: string) => {
 
     useEffect(() => {
         if (pdfText && !analysis) {
-            mutate({ text: pdfText, role: "Full Stack Developer" });
+            mutate({ text: pdfText, role: role || "Full Stack Developer" });
             // feedbackMutate({text: pdfText, role: "Full Stack Developer"});
         }
     }, [pdfText]);

@@ -6,7 +6,7 @@ export const useToFetchFeedback = (pdfText: string) => {
     const {state, dispatch} = useAppCtx()
 
     const {resume} = state;
-    const {feedback} = resume;
+    const {feedback, role} = resume;
     
     const { mutate, data, isPending, error } = api.resume.feedback.useMutation({
         onSuccess: (data) => {
@@ -20,7 +20,7 @@ export const useToFetchFeedback = (pdfText: string) => {
 
     useEffect(() => {
         if (pdfText && !feedback) {
-            mutate({ text: pdfText, role: "Full Stack Developer" });
+            mutate({ text: pdfText, role: role || "Full Stack Developer" });
         }
     }, [pdfText]);
 

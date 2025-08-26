@@ -10,6 +10,8 @@ import { Separator } from "@/components/ui/separator"
 import { Upload, type File, FileText, X, Check, AlertCircle, FolderOpen } from "lucide-react"
 import { handleAnalyze } from "../_utils/handleAnalyze"
 import { useRouter } from "next/navigation"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select"
+import { useAppCtx } from "~/contexts/app"
 
 interface FileWithPreview extends File {
     progress?: number
@@ -83,10 +85,13 @@ export default function SinglePdfUploadPage() {
     //   const {} = handleAnalyze(file!)
 
 
+    const { dispatch } = useAppCtx()
+
     const router = useRouter();
 
 
     const handleNavigate = () => {
+        dispatch({ type: "UPDATE_RESUME_ROLE", payload: selectedRole })
         // navigate.push("/resume/analysis")
         // navigate.useRouter().push("/resume-analysis");
         router.push("/resume/analysis");
@@ -105,6 +110,8 @@ export default function SinglePdfUploadPage() {
         // handleFile(pdf)
         // handleFile(file.text)
     }, [file])
+
+    const [selectedRole, setSelectedRole] = useState("Software Engineer");
 
 
     return (
@@ -203,6 +210,55 @@ export default function SinglePdfUploadPage() {
                         </CardContent>
                     </Card>
                 )}
+
+                {/* select user current role */}
+                {
+                    file && (
+                        <div className="flex justify-center mt-6">
+                            <Badge variant="outline" className="text-primary p-4">
+                                Current Role: <span className="font-semibold ml-2">{selectedRole}</span>
+                            </Badge>
+
+                            <Select
+                                value={selectedRole}
+                                onValueChange={(value) => setSelectedRole(value)}
+                                // className="ml-4 min-w-[200px]"
+                            >
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select your current role" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="Full Stack Developer">Full Stack Developer</SelectItem>
+                                    <SelectItem value="Software Engineer">Software Engineer</SelectItem>
+                                    <SelectItem value="Product Manager">Product Manager</SelectItem>                                    <SelectItem value="Data Scientist">Data Scientist</SelectItem>
+                                    <SelectItem value="Designer">Designer</SelectItem>
+                                    <SelectItem value="Other">Other</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                    )
+                }
+                {/* {
+                    file && (
+                        <div className="flex justify-center mt-6">
+                            <Badge variant="outline" className="text-primary p-4">
+                                Current Role: <span className="font-semibold ml-2">{selectedRole}</span>
+                            </Badge>
+
+                            <select
+                                value={selectedRole}
+                                onChange={(e) => setSelectedRole(e.target.value)}
+                                className="ml-4 p-2 border border-gray-300 rounded-lg"
+                            >
+                                <option value="Software Engineer">Software Engineer</option>
+                                <option value="Product Manager">Product Manager</option>
+                                <option value="Data Scientist">Data Scientist</option>
+                                <option value="Designer">Designer</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    )
+                } */}
 
                 {/* upload button */}
                 {

@@ -104,50 +104,13 @@
   --sidebar-ring: oklch(0.5 0 0);
 }
 
-/* ==================================================
-   LIGHT MODE
-   (auto-applied when user's system is in light mode)
-   ================================================== */
-/* :root.light {
-  --background: oklch(0.985 0 0);
-  /* white /
-  --foreground: oklch(0.145 0 0);
-  /* black text /
-
-  --card: oklch(0.97 0 0);
-  /* white card /
-  --card-foreground: oklch(0.145 0 0);
-
-  --popover: oklch(0.97 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-
-  --primary: oklch(0.65 0.16 190);
-  /* cyan /
-  --primary-foreground: oklch(0.145 0 0);
-  /* black /
-
-  --secondary: oklch(0.94 0 0);
-  /* light gray /
-  --secondary-foreground: oklch(0.145 0 0);
-
-  --muted: oklch(0.94 0 0);
-  --muted-foreground: oklch(0.45 0 0);
-
-  --accent: oklch(0.9 0 0);
-  --accent-foreground: oklch(0.145 0 0);
-} */
 :root.light {
-  /* === Base Background & Text === */
-  /* --background: oklch(98% 0.005 280); */
   /* Soft off-white */
   background: oklch(60% 0.22 289);
 
   --foreground: oklch(18% 0.02 300);
   /* Very dark purple-gray */
 
-  /* === Surface Layers === */
-  /* --card: oklch(96% 0.004 290); */
-  /* --card: oklch(94% 0.005 290); */
   --card: oklch(93% 0.005 290);
 
   /* Light gray card */
@@ -159,11 +122,8 @@
   --popover-foreground: oklch(20% 0.015 290);
 
   /* === Primary CTA / Highlights === */
-  /* --primary: oklch(63% 0.15 289); */
-  --primary: oklch(65% 0.20 289);
-  /* Cyan-purple hybrid */
-  --primary-foreground: oklch(98.5% 0 0);
-  /* White or very light */
+  --primary: oklch(65% 0.20 289); /* Cyan-purple hybrid */
+  --primary-foreground: oklch(98.5% 0 0); /* White or very light */
 
   /* === Secondary UI (badges, tags, etc.) === */
   --secondary: oklch(91% 0.025 296);
@@ -172,36 +132,23 @@
   /* Dark muted text */
 
   /* === Muted Text / Labels === */
-  --muted: oklch(94% 0.008 290);
-  /* Light gray */
-  /* --muted-foreground: oklch(50% 0.01 280); */
-  /* Light purple-gray */
-  --muted-foreground: oklch(45% 0.01 280);
-  /* Light purple-gray */
+  --muted: oklch(94% 0.008 290); /* Light gray */
+  --muted-foreground: oklch(45% 0.01 280); /* Light purple-gray */
 
   /* === Accent / Hover / Border States === */
-  --accent: oklch(85% 0.07 300);
-  /* Vibrant light purple */
+  --accent: oklch(85% 0.07 300); /* Vibrant light purple */
   --accent-foreground: oklch(20% 0.01 280);
   /* Contrast for icons/text */
 
   /* === Destructive / Error === */
-  --destructive: oklch(61% 0.191 22.216);
-  /* Rich alert red */
+  --destructive: oklch(61% 0.191 22.216); /* Rich alert red */
 
   /* === Borders / Inputs / Focus === */
-  /* --border: oklch(90% 0.01 300 / 30%); */
-  --border: oklch(90% 0.01 300 / 40%);
-  /* Soft gray border */
-  --input: oklch(94% 0.01 300 / 35%);
-  /* Slightly filled field */
-  --ring: oklch(63% 0.12 296);
-  /* Bright violet ring */
+  --border: oklch(90% 0.01 300 / 40%); /* Soft gray border */
+  --input: oklch(94% 0.01 300 / 35%); /* Slightly filled field */
+  --ring: oklch(63% 0.12 296); /* Bright violet ring */
 
   /* === Sidebar / Navigation === */
-  /* --sidebar: oklch(96% 0.004 290); */
-  /* Match card */
-  /* --sidebar: oklch(96% 0.004 290); header background */
   --sidebar: oklch(94% 0.01 290);
 
 
@@ -226,42 +173,25 @@
    DARK MODE (screenshot match)
    ================================================== */
 :root.dark {
-  --background: oklch(23.038% 0.10187 295.77);
-  /* #140038 deep purple */
-  --foreground: oklch(0.985 0 0);
-  /* white */
+  --background: oklch(23.038% 0.10187 295.77); /* #140038 deep purple */
+  --foreground: oklch(0.985 0 0); /* white */
 
-  /* --card: oklch(0.22 0.05 300); */
-  /* #1f043c */
-  /* --card-foreground: oklch(0.985 0 0); */
-  --card: oklch(25% 0.05 296);
-  /* slightly brighter than 22% */
-  --card-foreground: oklch(0.985 0 0);
-  /* keep this if working */
+  --card: oklch(25% 0.05 296); /* slightly brighter than 22% */
+  --card-foreground: oklch(0.985 0 0); /* keep this if working */
 
   --popover: oklch(0.22 0.05 300);
   --popover-foreground: oklch(0.985 0 0);
 
-  --primary: oklch(84.5% 0.15 290);
-  /* purple-cyan hybrid */
-  /* --primary: oklch(84.386% 0.14214 194.835 / 0.905); */
-  /* #00e6e6 */
-  --primary-foreground: oklch(0.15 0.05 300);
-  /* dark purple text */
+  --primary: oklch(84.5% 0.15 290); /* purple-cyan hybrid */
+  --primary-foreground: oklch(0.15 0.05 300); /* dark purple text */
 
-  --secondary: oklch(30.497% 0.09693 296.708);
-  /* medium purple */
-  --secondary-foreground: oklch(0.985 0 0);
-  /* white */
+  --secondary: oklch(30.497% 0.09693 296.708); /* medium purple */
+  --secondary-foreground: oklch(0.985 0 0); /* white */
 
   --muted: oklch(0.25 0.05 300);
-  /* ≈ #0c0026 */
-  --muted-foreground: oklch(0.75 0.01 280);
-  /* --muted-foreground: oklch(0.7 0.01 280); */
-  /* light gray subtext */
+  --muted-foreground: oklch(0.75 0.01 280); /* light gray subtext */
 
   --accent: oklch(41.838% 0.09742 298.523);
-  /* #3c017a */
   --accent-foreground: oklch(0.985 0 0);
 
   --destructive: oklch(0.704 0.191 22.216);
@@ -272,85 +202,13 @@
   --sidebar: oklch(0.22 0.05 300);
   /* same as card */
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(75% 0.2 296);
-  /* richer, vibrant brand purple */
-  /* --sidebar-primary: oklch(0.52 0.23 264.376); */
-  /* bright blue-violet */
+  --sidebar-primary: oklch(75% 0.2 296); /* richer, vibrant brand purple */
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.28 0.05 300);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.3 0.02 300 / 15%);
   --sidebar-ring: oklch(0.6 0.02 300);
 }
-
-/* :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-} */
 
 @layer base {
   * {

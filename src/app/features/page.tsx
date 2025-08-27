@@ -1,15 +1,10 @@
-// "use client"
-
 import React from 'react'
-import { FeatureCards } from '../_components/FeatureCards'
 import Link from 'next/link'
-import { Award, BarChart3, CheckCircle, Shield, Target, TrendingUp, Zap } from 'lucide-react'
+import { BarChart3, CheckCircle, Shield, Target, Zap } from 'lucide-react'
 import { Card, CardContent } from '~/components/ui/card'
 import { PagesHeroSection } from '../_components/PagesHeroSection'
 
 const FeaturesPage = () => {
-    // const [isMenuOpen, setIsMenuOpen] = useState(false)
-
     const features = [
         {
             icon: BarChart3,
@@ -27,21 +22,6 @@ const FeaturesPage = () => {
             benefits: ["Industry-specific keywords", "Skill gap analysis", "Trending terms detection"],
             gradient: "from-green-400 to-green-600",
         },
-        // {
-        //     icon: Award,
-        //     title: "Professional Formatting",
-        //     description:
-        //         "Ensure your resume follows best practices with our formatting analyzer and get suggestions for improvement.",
-        //     benefits: ["Layout optimization", "Font and spacing tips", "Section organization"],
-        //     gradient: "from-purple-400 to-purple-600",
-        // },
-        // {
-        //     icon: TrendingUp,
-        //     title: "Performance Analytics",
-        //     description: "Track how your resume performs over time and see which changes make the biggest impact.",
-        //     benefits: ["Success rate tracking", "A/B testing support", "Performance insights"],
-        //     gradient: "from-orange-400 to-orange-600",
-        // },
         {
             icon: Shield,
             title: "Privacy & Security",
@@ -60,18 +40,14 @@ const FeaturesPage = () => {
 
     return (
         <main className="max-w-5xl mx-auto px-8 py-12">
-            {/* <h1 className="text-5xl font-extrabold tracking-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500 mb-12">
-                Features
-            </h1> */}
             <PagesHeroSection />
-            {/* Features Grid */}
+
             <section className="relative z-10 py-20 px-6">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         {features.map((feature, index) => (
                             <Card
                                 key={index}
-                                // className="bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/15 transition-all duration-300 hover:scale-105 group"
                                 className="backdrop-blur-md hover:bg-card/40 border-2 border-card hover:border-2 hover:border-accent transition-all duration-300 hover:scale-105 group"
                             >
                                 <CardContent className="p-8">
@@ -100,12 +76,10 @@ const FeaturesPage = () => {
                     </div>
                 </div>
             </section>
-            {/* <FeatureCards /> */}
+
             <Link
                 href="/resume/upload"
-                // className="inline-block px-8 py-5 font-bold rounded-lg shadow-lg transition bg-sidebar-primary duration-300 transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-offset-blue-200 mt-8 w-full text-center"
                 className="inline-block px-8 py-5 bg-gradient-to-r from-primary to-sidebar-primary font-bold rounded-lg shadow-lg hover:from-sidebar-primary hover:to-primary transition duration-300 transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-offset-blue-200 mt-8 w-full text-center text-muted"
-                // className="inline-block px-8 py-5 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-lg shadow-lg hover:from-blue-600 hover:to-purple-700 transition duration-300 transform hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 focus:ring-offset-2 focus:ring-offset-blue-200 mt-8 w-full text-center"
             >
                 Upload Resume
             </Link>

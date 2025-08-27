@@ -9,36 +9,22 @@ import { useSession } from 'next-auth/react'
 export const FeedbackData = ({ getHtml }: { getHtml: (htmlContent: string) => void }) => {
     const { state } = useAppCtx()
     const { resume } = state
-    const { parsedText, feedback } = resume
+    const { parsedText } = resume
 
     const { status } = useSession()
-
-    // console.log(feedback, "feedback")
 
     const result = useToFetchFeedback(parsedText)
 
     const { keys, values, error, isPending } = result
 
     const markups = values?.map((value, index) => {
-        // console.log(value, "value",  index, keys[index], value, status, typeof value);
-        if(typeof value === "number") return null
-        // console.log(value, "value", keys[index], value, status, typeof value);
+        if (typeof value === "number" || !value) return null
         return value ? <FeedbackSection key={index} label={keys[index]!} content={value as { [key: string]: string | string[] }} status={status} /> : null
     })
-
-    // const markups = values?.map((key, index) => {
-    //     return <FeedbackSection key={index} label={keys[index]!} content={values[index] as { [key: string]: string | string[] }} status={status} />
-    // })
-
-    // useEffect(() => {
-    //     const htmlContent = getHtml(renderToString(markups));
-    //     console.log(htmlContent);
-    // }, [markups])
 
     useEffect(() => {
         if (!markups) return
         const htmlContent = renderToString(markups);
-        // console.log(markups);
         getHtml?.(htmlContent);
     }, [markups, getHtml])
 
@@ -56,7 +42,12 @@ export const FeedbackData = ({ getHtml }: { getHtml: (htmlContent: string) => vo
                 }
 
                 {
-                    keys.length && values.length && <Link href="/" className="text-xl text-primary underline hover:text-blue-800">Go back to resume upload</Link>
+                    keys.length && values.length && (
+                        <div className='flex gap-4 items-center justify-center px-2'>
+                            <Link href="/resume/analysis" className="text-xl text-primary underline hover:text-blue-800">Back to resume analysis</Link>
+                            <Link href="/" className="text-xl text-primary underline hover:text-blue-800">Back to resume upload</Link>
+                        </div>
+                    )
                 }
             </div>
 
@@ -67,18 +58,6 @@ export const FeedbackData = ({ getHtml }: { getHtml: (htmlContent: string) => vo
                     </div>
                 )
             }
-
-            {/* {
-                keys.length && (
-                    <button className="mt-4 w-full rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-700">Download Feedback</button>
-                )
-            } */}
-
-            {/* {
-                values?.map((value, index) => {
-                    return <FeedbackSection key={index} label={keys[index]!} content={value as { [key: string]: string | string[] }} />
-                })
-            } */}
         </div>
     )
 }

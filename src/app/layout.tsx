@@ -1,14 +1,11 @@
 import "~/styles/globals.css";
-
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
-
 import { TRPCReactProvider } from "~/trpc/react";
 import { auth } from "~/server/auth";
 import AuthProvider from "~/utils/AuthProvider";
 import AppCtxProvider from "~/contexts/app";
-import { Navigations } from "./_components/Navigations";
 import { Header } from "./_components/Header";
 
 export const metadata: Metadata = {
@@ -28,37 +25,23 @@ export default async function RootLayout({
   const session = await auth(); // Fetch session on the server
 
   return (
-    // <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
     <html lang="en"
-      // className={`${geist.variable}`}
       suppressHydrationWarning
     >
-      <body 
-        // className="bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white"
+      <body
         className="bg-gradient-to-b from-background to-secondary text-foreground"
       >
-        {/* <Header /> */}
-        {/* <Navigations /> */}
-        {/* <AuthProvider session={session}> */}
-        {/* <TRPCReactProvider>{children}</TRPCReactProvider> */}
-        {/* </AuthProvider> */}
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <TRPCReactProvider>
             <AuthProvider session={session}>
               <AppCtxProvider>
-                {/* <ThemeProvider attribute="class" defaultTheme="system" enableSystem> */}
-
-
                 <Header />
-                {/* <Navigations /> */}
                 {children}
-                {/* </ThemeProvider> */}
               </AppCtxProvider>
             </AuthProvider>
           </TRPCReactProvider>
         </ThemeProvider>
       </body>
     </html>
-    // </ThemeProvider>
   );
 }

@@ -1,9 +1,8 @@
 "use client"
 
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useToResumeDataExtraction } from '../_hooks/useToResumeDataExtraction'
 import { useAppCtx } from '~/contexts/app';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '~/components/ui/button';
 
@@ -14,59 +13,33 @@ export const DataSection = ({ pdfText }: { pdfText: string }) => {
     const { analysis } = resume;
 
     const { data, error, isPending } = useToResumeDataExtraction(pdfText);
-    // const {data} = analysis || useToResumeDataExtraction(pdfText);
-
-    // useEffect(() => {
-    //     if (data && !analysis) {
-    //         dispatch({type: "UPDATE_RESUME_ANALYSIS", payload: data});
-    //     }
-    // }, [data]);
-
-    // const router = useRouter();
-
-    // useEffect(() => {
-    //     if (data) {
-    //         router.push("/resume/feedback");
-    //     }
-    // }, [data]);
 
     return (
         <div className='flex flex-col items-center justify-center gap-4'>
-            {/* <h3>Extracted Details (via tRPC):</h3> */}
-            {/* {isPending && <p className='text-center text-white text-2xl font-bold'>Extracting details...</p>}
-            {error && <p>Error: {error.message}</p>}
-            {!(analysis || data) && !isPending && <p>No data available</p>} */}
-
             <div className="my-12">
-                {isPending && <p className='text-center text-white text-2xl font-bold'>Extracting details...</p>}
+                {isPending && <p className='text-center text-2xl font-bold'>Extracting details...</p>}
                 {error && <p>Error: {error.message}</p>}
                 {!(analysis || data) && !isPending && (
                     <div className='flex flex-col items-center justify-center gap-4'>
-                        <p className='text-center text-white text-2xl font-bold'>No data available</p>
-                        <Link href="/resume/upload" className="px-6 py-4 bg-white/80 text-blue-600 font-semibold rounded shadow hover:bg-blue-100 transition duration-300">Upload Resume</Link>
+                        <p className='text-center text-2xl font-bold'>No data available</p>
+                        <Link href="/resume/upload" className="px-6 py-4 bg-secondary/60 text-2xl text-primary/90 font-semibold rounded shadow hover:bg-secondary transition duration-300">Upload Resume</Link>
                     </div>
                 )}
                 {(analysis || data) && !isPending && (
-                    <Button variant="default" size="lg" className="min-w-2xs">
-                        <Link href="/resume/feedback"
-                        // className='text-center text-white text-2xl font-bold w-full'
-                        // className="px-6 py-4 bg-white/80 text-blue-600 font-semibold rounded shadow hover:bg-blue-100 transition duration-300"
-                        className='text-2xl'
-                    >View Feedback</Link>
-                    </Button>
-                    // <Link href="/resume/feedback"
-                    //     // className='text-center text-white text-2xl font-bold w-full'
-                    //     className="px-6 py-4 bg-white/80 text-blue-600 font-semibold rounded shadow hover:bg-blue-100 transition duration-300"
-                    // >View Feedback</Link>
+                    <div className='flex justify-center items-center gap-4'>
+                        <Button variant="secondary" size="lg" className="min-w-2xs">
+                            <Link href="/resume/upload"
+                                className='text-2xl'
+                            >Upload Resume</Link>
+                        </Button>
+                        <Button variant="default" size="lg" className="min-w-2xs">
+                            <Link href="/resume/feedback"
+                                className='text-2xl'
+                            >View Feedback</Link>
+                        </Button>
+                    </div>
                 )}
             </div>
-
-            {/* {(analysis || data) && !isPending && (
-                <Link href="/resume/feedback" 
-                // className='text-center text-white text-2xl font-bold w-full'
-                className="px-6 py-4 bg-white/80 text-blue-600 font-semibold rounded shadow hover:bg-blue-100 transition duration-300"
-                >View Feedback</Link>
-            )} */}
 
             {(analysis || data) && !isPending ? (
                 <div className="space-y-10">
@@ -77,8 +50,7 @@ export const DataSection = ({ pdfText }: { pdfText: string }) => {
                     </div>
 
                     <div className="space-y-2">
-                        <p 
-                            // className="font-bold text-3xl text-blue-200 uppercase"
+                        <p
                             className="font-bold text-3xl text-primary/90 uppercase"
                         >Experience</p>
                         <div className={`grid ${(analysis || data)?.experience?.length <= 4 ? `grid-cols-${(analysis || data)?.experience?.length.toString()}` : "grid-cols-4"} gap-4`}>
@@ -100,8 +72,7 @@ export const DataSection = ({ pdfText }: { pdfText: string }) => {
                     </div>
 
                     <div className="space-y-2">
-                        <p 
-                            // className="font-bold text-3xl text-blue-200 uppercase"
+                        <p
                             className="font-bold text-3xl text-primary/90 uppercase"
                         >Education</p>
                         <div className={`grid ${(analysis || data)?.education?.length <= 4 ? `grid-cols-${(analysis || data)?.education?.length.toString()}` : "grid-cols-4"} gap-4`}>
@@ -166,29 +137,13 @@ export const DataSection = ({ pdfText }: { pdfText: string }) => {
                             <ResumeSection label='Achievements' content={(analysis || data)?.achievements} />
                         ) : null
                     }
-
-                    {/* <p>Summary: {Data?.summary}</p>
-                <p>Experience: {Data?.experience}</p>
-                <p>Skills: {Data?.skills}</p>
-                <p>Education: {Data?.education}</p>
-                <p>Projects: {Data?.projects}</p>
-                <p>Certifications: {Data?.certifications}</p>
-                <p>Languages: {Data?.languages}</p>
-                <p>Interests: {Data?.interests}</p>
-                <p>References: {Data?.references}</p> */}
                 </div>
             ) : (
 
                 pdfText && (
                     <p>No details extracted yet</p>
                 )
-
-                // <p>Extraction data in progress.</p>
             )}
-            {/* Optionally, add a button to re-trigger if needed, though useEffect handles initial load */}
-            {/* <button onClick={handleExtractDetails} disabled={extractMutation.isPending}>
-            {extractMutation.isPending ? 'Extracting...' : 'Re-Extract Details'}
-        </button> */}
 
             {
                 !(data || analysis) && isPending && (
@@ -204,12 +159,10 @@ const ResumeSection = ({ label, content }: { label: string, content: string[] })
 
     return (
         <section className="my-4">
-            <h3 
-                // className="font-bold text-3xl text-blue-200 uppercase"
+            <h3
                 className="font-bold text-3xl text-primary/90 uppercase"
             >{label}</h3>
             <ul
-                // className="list-disc pl-4"
                 className={`list-disc pl-4 grid ${(content || []).length <= 4 ? `grid-cols-${(content || []).length.toString()}` : "grid-cols-4"} gap-4`}
             >
                 {

@@ -3,8 +3,6 @@
 import React from 'react'
 import { DataSection } from './_components/DataSection'
 import { useAppCtx } from '~/contexts/app'
-import Link from 'next/link'
-import { HydrateClient } from '~/trpc/server'
 
 const ResumeAnalysis = () => {
   const { state } = useAppCtx()

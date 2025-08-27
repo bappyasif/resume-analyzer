@@ -45,23 +45,6 @@ export default function HowItWorksSection() {
                     const IconComponent = step.icon
                     return (
                         <StepCard key={index} number={step.number} icon={IconComponent} title={step.title} description={step.description} />
-                        // <div key={index} className="text-center">
-                        //     {/* Step Number */}
-                        //     <div className="inline-block bg-teal-100 text-teal-600 font-bold text-lg px-4 py-2 rounded-lg mb-6">
-                        //         {step.number}
-                        //     </div>
-
-                        //     {/* Icon */}
-                        //     <div className="flex justify-center mb-6">
-                        //         <IconComponent className="w-12 h-12 text-white" />
-                        //     </div>
-
-                        //     {/* Title */}
-                        //     <h3 className="text-xl md:text-2xl font-bold text-white mb-4">{step.title}</h3>
-
-                        //     {/* Description */}
-                        //     <p className="text-gray-300 leading-relaxed">{step.description}</p>
-                        // </div>
                     )
                 })}
             </div>
@@ -73,15 +56,8 @@ const StepCard = ({ number, icon, title, description }: { number: string, icon: 
     const IconComponent = icon
     return (
         <Card 
-            // className="backdrop-blur-md border-foreground/20 hover:bg-primary/20 transition-all duration-300 hover:scale-105"
             className="backdrop-blur-md hover:border-foreground/20 hover:bg-card/20 transition-all duration-300 hover:scale-105"
         >
-            {/* <CardHeader>
-                {/* Step Number /}
-                <div className="inline-block bg-teal-100 text-teal-600 font-bold text-lg px-4 py-2 rounded-lg mb-6 text-center">
-                    {number}
-                </div>
-            </CardHeader> */}
             <CardHeader className="font-bold text-lg px-4 py-2 rounded-lg mb-6 text-center bg-sidebar-accent mx-4">
                 {/* Step Number */}
                 {number}
@@ -103,23 +79,4 @@ const StepCard = ({ number, icon, title, description }: { number: string, icon: 
             </CardFooter>
         </Card>
     )
-    // return (
-    //     <div className="text-center">
-    //         {/* Step Number */}
-    //         <div className="inline-block bg-teal-100 text-teal-600 font-bold text-lg px-4 py-2 rounded-lg mb-6">
-    //             {number}
-    //         </div>
-
-    //         {/* Icon */}
-    //         <div className="flex justify-center mb-6">
-    //             {<IconComponent className="w-12 h-12 text-white" />}
-    //         </div>
-
-    //         {/* Title */}
-    //         <h3 className="text-xl md:text-2xl font-bold text-white mb-4">{title}</h3>
-
-    //         {/* Description */}
-    //         <p className="text-gray-300 leading-relaxed">{description}</p>
-    //     </div>
-    // )
 }

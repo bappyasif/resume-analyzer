@@ -21,7 +21,6 @@ export const useToResumeDataExtraction = (pdfText: string) => {
     useEffect(() => {
         if (pdfText && !analysis) {
             mutate({ text: pdfText, role: role || "Full Stack Developer" });
-            // feedbackMutate({text: pdfText, role: "Full Stack Developer"});
         }
     }, [pdfText]);
 

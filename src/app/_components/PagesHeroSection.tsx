@@ -7,7 +7,6 @@ export const PagesHeroSection = () => {
                 <h1 className="text-5xl lg:text-6xl font-bold text-foreground mb-6">
                     Powerful
                     <span 
-                        // className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent"
                         className="bg-gradient-to-r from-primary to-sidebar-foreground bg-clip-text text-transparent"
                     >
                         {" "}

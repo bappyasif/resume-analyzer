@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "../trpc";
+import { apiUrl } from "~/constants/apiUrl";
 
 // Define the input schema for type safety
 const extractDetailsInput = z.object({
@@ -34,9 +35,12 @@ export const resumeRouter = createTRPCRouter({
     .output(extractedDetailsOutput)
     .mutation(async ({ input }) => {
       const { text, role } = input;
+      const url = apiUrl + '/resume-analysis/';
+
       const response = await fetch(
-        'http://localhost:3003/resume-analysis/'
-        , {
+        // 'http://localhost:3003/resume-analysis/'
+        url,
+        {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -57,8 +61,12 @@ export const resumeRouter = createTRPCRouter({
     .output(feedbackOutput)
     .mutation(async ({ input }) => {
       const { text, role } = input;
+
+      const url = apiUrl + '/resume-feedback';
+
       const response = await fetch(
-        'http://localhost:3003/resume-feedback',
+        // 'http://localhost:3003/resume-feedback',
+        url,
         {
           method: 'POST',
           headers: {

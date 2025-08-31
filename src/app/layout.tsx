@@ -1,6 +1,6 @@
 import "~/styles/globals.css";
 import { type Metadata } from "next";
-import { Geist } from "next/font/google";
+// import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { TRPCReactProvider } from "~/trpc/react";
 import { auth } from "~/server/auth";
@@ -14,10 +14,10 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans",
-});
+// const geist = Geist({
+//   subsets: ["latin"],
+//   variable: "--font-geist-sans",
+// });
 
 export default async function RootLayout({
   children,

@@ -152,7 +152,7 @@ const FileDisplay = ({
                             {file.status === "completed" && <Check className="h-4 w-4 text-green-600" />}
                             {file.status === "error" && <AlertCircle className="h-4 w-4 text-red-600" />}
                         </div>
-                        <p className="text-xs text-muted-foreground mb-2">{formatFileSize(file?.data?.size || 0)}</p>
+                        <p className="text-xs text-muted-foreground mb-2">{formatFileSize(file?.data?.size ?? 0)}</p>
                         {file.status === "uploading" && <Progress value={file.progress} className="h-2" />}
                         {file.status === "completed" && (
                             <div className="text-xs text-green-600 font-medium">Upload completed</div>
@@ -177,6 +177,8 @@ const DropZone = ({ setFile, setIsUploading }: { setFile: React.Dispatch<React.S
     const simulateUpload = async (fileToUpload: FileWithPreview) => {
         setIsUploading(true)
 
+        setFile(fileToUpload)
+
         // Simulate upload progress
         for (let progress = 0; progress <= 100; progress += 10) {
             await new Promise((resolve) => setTimeout(resolve, 100))
@@ -199,7 +201,7 @@ const DropZone = ({ setFile, setIsUploading }: { setFile: React.Dispatch<React.S
                 data: acceptedFiles[0]
             }
 
-            setFile(newFile as FileWithPreview)
+            // setFile(newFile as FileWithPreview)
 
             simulateUpload(newFile as FileWithPreview)
         }

@@ -56,7 +56,7 @@ const NavOption = ({ item, handleChange, currentlyViewing }: { item: { label: st
     useEffect(() => {
         console.log("viewing", pathname)
         handleChange(pathname)
-    }, [])
+    }, [pathname, handleChange])
 
     return (
         <DropdownMenuItem onClick={() => handleChange(item.path)} disabled={currentlyViewing === item.path}>

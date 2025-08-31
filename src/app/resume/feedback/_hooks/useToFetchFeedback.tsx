@@ -10,7 +10,7 @@ export const useToFetchFeedback = (pdfText: string) => {
     
     const { mutate, data, isPending, error } = api.resume.feedback.useMutation({
         onSuccess: (data) => {
-            dispatch({type: "UPDATE_RESUME_FEEDBACK", payload: data?.feedback || data})
+            dispatch({type: "UPDATE_RESUME_FEEDBACK", payload: data?.feedback ?? data})
         },
         onError: (error) => {
             console.log(error);
@@ -19,11 +19,11 @@ export const useToFetchFeedback = (pdfText: string) => {
 
     useEffect(() => {
         if (pdfText && !feedback) {
-            mutate({ text: pdfText, role: role || "Full Stack Developer" });
+            mutate({ text: pdfText, role: role ?? "Full Stack Developer" });
         }
-    }, [pdfText]);
+    }, [pdfText, feedback]);
 
-    const dataSource = feedback || data
+    const dataSource = feedback ?? data
     const keys = dataSource ? Object.keys(dataSource) : [];
     const values = dataSource ? Object.values(dataSource) : [];
 

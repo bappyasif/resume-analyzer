@@ -7,6 +7,7 @@ import { auth } from "~/server/auth";
 import AuthProvider from "~/utils/AuthProvider";
 import AppCtxProvider from "~/contexts/app";
 import { Header } from "./_components/Header";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -35,6 +36,7 @@ export default async function RootLayout({
           <TRPCReactProvider>
             <AuthProvider session={session}>
               <AppCtxProvider>
+                <Analytics />
                 <Header />
                 {children}
               </AppCtxProvider>

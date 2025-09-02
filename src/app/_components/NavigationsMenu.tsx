@@ -1,10 +1,7 @@
 "use client"
 
 import * as React from "react"
-// import type { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu"
 import { Button } from "@/components/ui/button"
-
-// type Checked = DropdownMenuCheckboxItemProps["checked"]
 
 import {
     DropdownMenu,
@@ -29,7 +26,6 @@ export const NavigationsMenu = () => {
     const { isTrue, setFalse, setTrue } = useToToggleBoolean()
 
     useToDetectClickedOutside(ref as React.RefObject<HTMLDivElement>, () => {
-        console.log("clicked outside")
         setFalse()
     })
 

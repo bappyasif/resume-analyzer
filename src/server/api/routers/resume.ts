@@ -40,7 +40,6 @@ export const resumeRouter = createTRPCRouter({
       console.log(url, "url using");
 
       const response = await fetch(
-        // 'http://localhost:3003/resume-analysis/'
         url,
         {
           method: 'POST',
@@ -69,7 +68,6 @@ export const resumeRouter = createTRPCRouter({
       console.log(url, "url using");
 
       const response = await fetch(
-        // 'http://localhost:3003/resume-feedback',
         url,
         {
           method: 'POST',

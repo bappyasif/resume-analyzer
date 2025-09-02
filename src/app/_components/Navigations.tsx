@@ -54,7 +54,6 @@ const NavOption = ({ item, handleChange, currentlyViewing }: { item: { label: st
     const pathname = usePathname()
 
     useEffect(() => {
-        console.log("viewing", pathname)
         handleChange(pathname)
     }, [pathname, handleChange])
 

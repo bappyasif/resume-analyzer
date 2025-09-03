@@ -4,6 +4,15 @@ import pdfParse from "pdf-parse";
 import { TRPCError } from "@trpc/server";
 import { type inferRouterOutputs } from "@trpc/server";
 import { Buffer } from "buffer";
+import chromium from "@sparticuz/chromium";
+import puppeteer from "puppeteer-core";
+
+// const browser = await puppeteer.launch({
+//   args: chromium.args,
+//   // defaultViewport: chromium.defaultViewport,
+//   executablePath: await chromium.executablePath(),
+//   headless: true,
+// });
 
 export const pdfRouter = createTRPCRouter({
   parsePdf: publicProcedure
@@ -42,24 +51,37 @@ export const pdfRouter = createTRPCRouter({
         }
 
         // Create a browser instance
-        const browser = await import('puppeteer');
-        const browserInstance = await browser.launch({headless: true});
-        const page = await browserInstance.newPage();
+        // const browser = await import('puppeteer');
+        // const browserInstance = await browser.launch({headless: true});
+        // const page = await browserInstance.newPage();
+
+        const browser = await puppeteer.launch({
+          args: chromium.args,
+          // defaultViewport: chromium.defaultViewport,
+          executablePath: await chromium.executablePath(),
+          headless: true,
+        });
+
+        const page = await browser.newPage();
+
+        // decode the HTML content
+        input.htmlContent = decodeURIComponent(input.htmlContent);
 
         // Set page content
-        await page.setContent(input.htmlContent, {waitUntil: 'networkidle0'});
+        await page.setContent(input.htmlContent, { waitUntil: 'networkidle0' });
 
         // Generate PDF
         const pdfBuffer = await page.pdf({ format: 'A4' });
 
         // Close the browser
-        await browserInstance.close();
+        // await browserInstance.close();
+        await page.close();
+        await browser.close();
 
         // Return the PDF buffer
         return pdfBuffer;
 
-      }
-      catch (error) {
+      } catch (error) {
         console.error("Error parsing PDF:", error);
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",

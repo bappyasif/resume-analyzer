@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { BarChart3, CheckCircle, Shield, Target, Zap } from 'lucide-react'
 import { Card, CardContent } from '~/components/ui/card'
-import { PagesHeroSection } from '../_components/PagesHeroSection'
+import { HeroSection } from './_components/HeroSection'
 
 const FeaturesPage = () => {
     const features = [
@@ -40,7 +40,7 @@ const FeaturesPage = () => {
 
     return (
         <main className="max-w-5xl mx-auto px-8 py-12">
-            <PagesHeroSection />
+            <HeroSection />
 
             <section className="relative z-10 py-20 px-6">
                 <div className="max-w-7xl mx-auto">

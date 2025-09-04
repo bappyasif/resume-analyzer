@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const PagesHeroSection = () => {
+export const HeroSection = () => {
     return (
         <section className="relative z-10 text-center py-20 px-6">
             <div className="max-w-4xl mx-auto">

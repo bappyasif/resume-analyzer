@@ -2,13 +2,7 @@
 
 import type { User } from "next-auth";
 import React, { useMemo } from "react";
-
-export type Resume = {
-    parsedText: string;
-    role: string;
-    feedback: any;
-    analysis: any;
-};
+import type { ActionTypes, Resume } from "~/types";
 
 interface AppState {
     resume: Resume;
@@ -24,11 +18,6 @@ const initialState: AppState = {
     },
     user: null,
 };
-
-type ActionTypes = {
-    type: "UPDATE_RESUME_PARSED_TEXT" | "UPDATE_RESUME_ROLE" | "UPDATE_RESUME_FEEDBACK" | "UPDATE_RESUME_ANALYSIS" | "UPDATE_USER";
-    payload: any;
-}
 
 interface AppCtx {
     state: AppState;
@@ -95,7 +84,6 @@ const AppCtxProvider = ({ children }: { children: React.ReactNode }) => {
     return (
         <AppCtx.Provider
             value={memoizedValue}
-        // value={{ state, dispatch }}
         >
             {children}
         </AppCtx.Provider>

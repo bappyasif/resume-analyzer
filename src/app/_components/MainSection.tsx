@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { BiListCheck, BiMessageSquare } from 'react-icons/bi'
+import { BiListCheck } from 'react-icons/bi'
 import { Button } from '~/components/ui/button'
 
 export const MainSection = () => {
@@ -53,14 +53,6 @@ export const MainSection = () => {
                         <HeroFeature text="Unlimited Feedback" />
                     </div>
                 </div>
-            </div>
-
-            {/* Feedback button */}
-            <div className="fixed bottom-6 right-6">
-                <Button className="bg-primary hover:bg-primary/80 text-muted-foreground rounded-full p-6 text-lg px-10 shadow-lg inline-flex items-center gap-2">
-                    <BiMessageSquare className="w-4 h-4" />
-                    Feedback
-                </Button>
             </div>
         </div>
     )

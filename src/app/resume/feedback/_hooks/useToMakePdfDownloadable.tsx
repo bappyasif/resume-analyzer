@@ -29,7 +29,6 @@ export const useToMakePdfDownloadable = () => {
 
     const handleDownload = () => {
         mutate({
-            // htmlContent: getFullHtml()
             htmlContent: encodeURIComponent(getFullHtml())
         }, {
             onSuccess: (data) => {

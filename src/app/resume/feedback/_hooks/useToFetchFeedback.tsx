@@ -18,7 +18,7 @@ export const useToFetchFeedback = (pdfText: string) => {
     });
 
     useEffect(() => {
-        if (pdfText && !feedback) {
+        if (pdfText && !feedback && role) {
             mutate({ text: pdfText, role: role ?? "Full Stack Developer" });
         }
     }, [pdfText, feedback]);

@@ -4,7 +4,16 @@ import { api } from "~/trpc/react";
 export const handleAnalyze = () => {
     const { mutate, isPending: isLoading, error } = api.pdf.parsePdf.useMutation();
 
-    const { dispatch } = useAppCtx()
+    const { dispatch, state } = useAppCtx()
+
+    const reset = () => {
+        dispatch({type: "UPDATE_RESUME_PARSED_TEXT", payload: ""});
+        dispatch({type: "UPDATE_RESUME_ROLE", payload: "Full Stack Developer"});
+        dispatch({type: "UPDATE_RESUME_FEEDBACK", payload: null});
+        dispatch({type: "UPDATE_RESUME_ANALYSIS", payload: null});
+
+        console.log("reset resume state");
+    }
 
     const handleFile = (file: any) => {
         if (!file) return;
@@ -20,13 +29,20 @@ export const handleAnalyze = () => {
 
         reader.onload = () => {
             const base64String = reader.result?.toString().split(",")[1];
+
             if (!base64String) return;
+
             mutate(
                 { pdfData: base64String },
                 {
                     onSuccess: (data) => {
-                        
-                        dispatch({type: "UPDATE_RESUME_PARSED_TEXT", payload: data.text})
+                        if(state.resume.parsedText === data.text) {
+                            console.log("Same text as before, not updating state");
+                        } else {
+                            console.log("New text, updating state");
+                            reset();
+                            dispatch({type: "UPDATE_RESUME_PARSED_TEXT", payload: data.text})
+                        }
                     },
                     onError: (error) => {
                         console.error("Error parsing PDF:", error);

@@ -1,7 +1,10 @@
 import { Badge } from "~/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select"
+import { useToUpdateRole } from "../_hooks/useToUpdateRole"
 
-export const CurrentRoleBadge = ({ selectedRole, setSelectedRole }: { selectedRole: string, setSelectedRole: React.Dispatch<React.SetStateAction<string>> }) => {
+export const CurrentRoleBadge = () => {
+    const {updateRole, selectedRole} = useToUpdateRole();
+
     return (
         <div className="flex justify-center items-center mt-6">
             <Badge variant="outline" className="text-primary p-4">
@@ -10,7 +13,7 @@ export const CurrentRoleBadge = ({ selectedRole, setSelectedRole }: { selectedRo
 
             <Select
                 value={selectedRole}
-                onValueChange={(value) => setSelectedRole(value)}
+                onValueChange={(value) => updateRole(value)}
             >
                 <SelectTrigger>
                     <SelectValue placeholder="Select your current role" />

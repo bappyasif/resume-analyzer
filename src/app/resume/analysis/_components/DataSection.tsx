@@ -6,25 +6,31 @@ import { useAppCtx } from '~/contexts/app';
 import Link from 'next/link';
 import { Button } from '~/components/ui/button';
 
-export const DataSection = ({ pdfText }: { pdfText: string }) => {
+export const DataSection = (
+        // { pdfText }: { pdfText: string }
+    ) => {
     const { state } = useAppCtx();
 
     const { resume } = state;
     const { analysis } = resume;
 
-    const { data, error, isPending } = useToResumeDataExtraction(pdfText);
+    // const { data, error, isPending } = useToResumeDataExtraction(pdfText);
+    const { data, error, isPending } = useToResumeDataExtraction();
 
     return (
         <div className='flex flex-col items-center justify-center gap-4'>
             <div className="my-12">
                 {isPending && <p className='text-center text-2xl font-bold'>Extracting details...</p>}
+                
                 {error && <p>Error: {error.message}</p>}
+                
                 {!(analysis ?? data) && !isPending && (
                     <div className='flex flex-col items-center justify-center gap-4'>
                         <p className='text-center text-2xl font-bold'>No data available</p>
                         <Link href="/resume/upload" className="px-6 py-4 bg-secondary/60 text-2xl text-primary/90 font-semibold rounded shadow hover:bg-secondary transition duration-300">Upload Resume</Link>
                     </div>
                 )}
+
                 {(analysis ?? data) && !isPending && (
                     <div className='flex justify-center items-center gap-4'>
                         <Button variant="secondary" size="lg" className="min-w-2xs">
@@ -53,7 +59,9 @@ export const DataSection = ({ pdfText }: { pdfText: string }) => {
                         <p
                             className="font-bold text-3xl text-primary/90 uppercase"
                         >Experience</p>
-                        <div className={`grid ${(analysis ?? data)?.experience?.length <= 4 ? `grid-cols-${(analysis ?? data)?.experience?.length.toString()}` : "grid-cols-4"} gap-4`}>
+                        <div 
+                            className={`grid ${(analysis ?? data)?.experience?.length <= 4 ? `grid-cols-${(analysis ?? data)?.experience?.length.toString()}` : "grid-cols-4"} gap-4`}
+                        >
                             {
                                 (analysis ?? data)?.experience?.map((exp: any, index: number) => (
                                     <div key={index} className="space-y-1">
@@ -139,10 +147,10 @@ export const DataSection = ({ pdfText }: { pdfText: string }) => {
                     }
                 </div>
             ) : (
-
-                pdfText && (
-                    <p>No details extracted yet</p>
-                )
+                null
+                // pdfText && (
+                //     <p>No details extracted yet</p>
+                // )
             )}
 
             {

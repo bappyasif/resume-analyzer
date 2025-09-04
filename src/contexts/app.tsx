@@ -34,7 +34,6 @@ type Reducer = (state: AppState, action: ActionTypes) => AppState;
 const appCtxReducer: Reducer = (state, action) => {
     switch (action.type) {
         case "UPDATE_RESUME_PARSED_TEXT":
-            console.log(action.payload, "action payload: parsed text")
             return {
                 ...state,
                 resume: {

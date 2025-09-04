@@ -4,31 +4,26 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { handleAnalyze } from "../_utils/handleAnalyze"
 import { useRouter } from "next/navigation"
-import { useAppCtx } from "~/contexts/app"
 import type { FileWithPreview } from "~/types"
 import { FileDisplay } from "./FileDisplay"
 import { FileDropZone } from "./DropZone"
-import { CurrentRoleBadge } from "./CurrentRoleBadge"
+import { CurrentRoleBadge } from "../../_components/CurrentRoleBadge"
 
 export default function SinglePdfUploadPage() {
     const [file, setFile] = useState<FileWithPreview | null>(null)
     const [isUploading, setIsUploading] = useState(false)
-    const [selectedRole, setSelectedRole] = useState("Software Engineer");
 
     const removeFile = () => {
         setFile(null)
     }
 
-    const { dispatch } = useAppCtx()
-
     const router = useRouter();
 
     const handleNavigate = () => {
-        dispatch({ type: "UPDATE_RESUME_ROLE", payload: selectedRole })
         router.push("/resume/analysis");
     }
 
-    const { handleFile } = handleAnalyze()
+    const { handleFile } = handleAnalyze();
 
     useEffect(() => {
         if (!file) return;
@@ -52,7 +47,7 @@ export default function SinglePdfUploadPage() {
                 {/* select user current role */}
                 {
                     file && (
-                        <CurrentRoleBadge selectedRole={selectedRole} setSelectedRole={setSelectedRole} />
+                        <CurrentRoleBadge />
                     )
                 }
 

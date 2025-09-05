@@ -32,7 +32,7 @@ export const NavigationsMenu = () => {
     return (
         <DropdownMenu open={isTrue}>
             <DropdownMenuTrigger asChild onClick={setTrue}>
-                <Button variant="secondary"><MenuIcon /></Button>
+                <Button variant="secondary" className="rounded"><MenuIcon /></Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-48" align="end" ref={ref}>
                 <DropdownMenuGroup>

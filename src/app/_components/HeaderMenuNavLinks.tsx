@@ -4,7 +4,7 @@ import { Button } from "~/components/ui/button"
 export const HeaderMenuNavLinks = () => {
     const navsMarkups = () => navs.map((nav) => (
         <li key={nav.name}>
-            <Button variant="ghost" className="">
+            <Button variant="ghost" size={"lg"} className="">
                 <Link
                     href={nav.href}
                     className="transition-colors duration-200 text-xl font-semibold underline-offset-4 hover:no-underline decoration-accent rounded"

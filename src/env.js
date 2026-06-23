@@ -8,9 +8,10 @@ export const env = createEnv({
    */
   server: {
     AUTH_SECRET:
-      process.env.NODE_ENV === "production"
-        ? z.string()
-        : z.string().optional(),
+      // process.env.NODE_ENV === "production"
+      //   ? z.string()
+      //   : z.string().optional(),
+      z.string(),
     AUTH_GOOGLE_ID: z.string(),
     AUTH_GOOGLE_SECRET: z.string(),
 

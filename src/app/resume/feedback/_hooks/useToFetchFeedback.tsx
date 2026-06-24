@@ -8,18 +8,21 @@ export const useToFetchFeedback = (pdfText: string) => {
     const {resume} = state;
     const {feedback, role} = resume;
     
-    const { mutate, data, isPending, error } = api.resume.feedback.useMutation({
+    const { mutateAsync, data, isPending, error } = api.resume.feedback.useMutation({
         onSuccess: (data) => {
             dispatch({type: "UPDATE_RESUME_FEEDBACK", payload: data?.feedback ?? data})
         },
         onError: (error) => {
             console.log(error);
+            // Forces the mutation state back to 'idle', killing the spinner instantly
+            // reset(); 
         }
     });
 
     useEffect(() => {
         if (pdfText && !feedback && role) {
-            mutate({ text: pdfText, role: role ?? "Full Stack Developer" });
+            // mutate({ text: pdfText, role: role ?? "Full Stack Developer" });
+            mutateAsync({ text: pdfText, role: role ?? "Full Stack Developer" });
         }
     }, [pdfText, feedback]);
 

@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "../trpc";
 import { apiUrl } from "~/constants/apiUrl";
+import { TRPCError } from "@trpc/server";
 
 // Define the input schema for type safety
 const extractDetailsInput = z.object({
@@ -36,12 +37,11 @@ export const resumeRouter = createTRPCRouter({
     .mutation(async ({ input }) => {
       const { text, role } = input;
       const url = apiUrl + '/resume-analysis/';
+      // const url = "http://localhost:3003" + '/resume-analysis/';
 
       console.log(url, "url using");
-
-      const response = await fetch(
-        url,
-        {
+      try {
+        const response = await fetch(url, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -49,13 +49,45 @@ export const resumeRouter = createTRPCRouter({
           body: JSON.stringify({ text, role }),
         });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        if (!response.ok) {
+          // Throw a structured tRPC error instead of a generic one
+          throw new TRPCError({
+            code: "BAD_REQUEST",
+            message: `External API error! status: ${response.status}`,
+          });
+        }
+
+        const data = await response.json();
+        return data;
+
+      } catch (error) {
+        // If it's already a TRPCError, pass it through
+        if (error instanceof TRPCError) throw error;
+
+        // Handle network timeouts or crashes gracefully
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: error instanceof Error ? error.message : "Failed to analyze resume",
+        });
       }
 
-      const data = await response.json();
+      // const response = await fetch(
+      //   url,
+      //   {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //     body: JSON.stringify({ text, role }),
+      //   });
 
-      return data;
+      // if (!response.ok) {
+      //   throw new Error(`HTTP error! status: ${response.status}`);
+      // }
+
+      // const data = await response.json();
+
+      // return data;
     }),
   feedback: publicProcedure
     .input(extractDetailsInput)
@@ -67,22 +99,56 @@ export const resumeRouter = createTRPCRouter({
 
       console.log(url, "url using");
 
-      const response = await fetch(
-        url,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ text, role }),
-        });
+      try {
+        const response = await fetch(
+          url,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ text, role }),
+          });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        if (!response.ok) {
+          // Throw a structured tRPC error instead of a generic one
+          throw new TRPCError({
+            code: "BAD_REQUEST",
+            message: `External API error! status: ${response.status}`,
+          });
+        }
+
+        const data = await response.json();
+
+        return data;
+
+      } catch (error) {
+        // If it's already a TRPCError, pass it through
+        if (error instanceof TRPCError) throw error;
+
+        // Handle network timeouts or crashes gracefully
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: error instanceof Error ? error.message : "Failed to analyze resume",
+        });
       }
 
-      const data = await response.json();
+      // const response = await fetch(
+      //   url,
+      //   {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //     body: JSON.stringify({ text, role }),
+      //   });
 
-      return data;
+      // if (!response.ok) {
+      //   throw new Error(`HTTP error! status: ${response.status}`);
+      // }
+
+      // const data = await response.json();
+
+      // return data;
     }),
 })

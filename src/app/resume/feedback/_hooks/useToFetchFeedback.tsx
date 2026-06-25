@@ -14,14 +14,11 @@ export const useToFetchFeedback = (pdfText: string) => {
         },
         onError: (error) => {
             console.log(error);
-            // Forces the mutation state back to 'idle', killing the spinner instantly
-            // reset(); 
         }
     });
 
     useEffect(() => {
         if (pdfText && !feedback && role) {
-            // mutate({ text: pdfText, role: role ?? "Full Stack Developer" });
             mutateAsync({ text: pdfText, role: role ?? "Full Stack Developer" });
         }
     }, [pdfText, feedback]);

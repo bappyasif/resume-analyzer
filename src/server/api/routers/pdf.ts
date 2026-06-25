@@ -7,13 +7,6 @@ import { Buffer } from "buffer";
 import chromium from "@sparticuz/chromium";
 import puppeteer from "puppeteer-core";
 
-// const browser = await puppeteer.launch({
-//   args: chromium.args,
-//   // defaultViewport: chromium.defaultViewport,
-//   executablePath: await chromium.executablePath(),
-//   headless: true,
-// });
-
 export const pdfRouter = createTRPCRouter({
   parsePdf: publicProcedure
     .input(z.object({ pdfData: z.string() })) // Expecting a base64 encoded string
@@ -51,13 +44,8 @@ export const pdfRouter = createTRPCRouter({
         }
 
         // Create a browser instance
-        // const browser = await import('puppeteer');
-        // const browserInstance = await browser.launch({headless: true});
-        // const page = await browserInstance.newPage();
-
         const browser = await puppeteer.launch({
           args: chromium.args,
-          // defaultViewport: chromium.defaultViewport,
           executablePath: await chromium.executablePath(),
           headless: true,
         });
@@ -74,7 +62,6 @@ export const pdfRouter = createTRPCRouter({
         const pdfBuffer = await page.pdf({ format: 'A4' });
 
         // Close the browser
-        // await browserInstance.close();
         await page.close();
         await browser.close();
 

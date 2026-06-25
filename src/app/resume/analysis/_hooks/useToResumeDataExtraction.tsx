@@ -2,15 +2,13 @@ import { useEffect } from "react";
 import { useAppCtx } from "~/contexts/app";
 import { api } from "~/trpc/react";
 
-export const useToResumeDataExtraction = (
-    // pdfText: string
-) => {
+export const useToResumeDataExtraction = () => {
     const {state, dispatch} = useAppCtx()
 
     const {resume} = state;
     const {analysis, role, parsedText: pdfParsedText} = resume;
 
-    const { mutate, mutateAsync, data, isPending, error, reset } = api.resume.extractDetails.useMutation({
+    const { mutateAsync, data, isPending, error, reset } = api.resume.extractDetails.useMutation({
         onSuccess: (data) => {
             dispatch({type: "UPDATE_RESUME_ANALYSIS", payload: data})
         },
@@ -24,7 +22,6 @@ export const useToResumeDataExtraction = (
 
     useEffect(() => {
         if (pdfParsedText && !analysis) {
-            // mutate({ text: pdfParsedText, role: role || "Full Stack Developer" });
             mutateAsync({ text: pdfParsedText, role: role || "Full Stack Developer" });
         }
     }, [pdfParsedText]);

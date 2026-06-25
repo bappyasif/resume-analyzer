@@ -27,7 +27,6 @@ export const FileDropZone = ({ setFile, setIsUploading }: { setFile: React.Dispa
         if (acceptedFiles[0]?.name) {
 
             const newFile = {
-                // ...acceptedFiles[0],
                 progress: 0,
                 status: "uploading",
                 id: Math.random().toString(36).substr(2, 9),

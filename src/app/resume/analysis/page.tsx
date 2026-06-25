@@ -2,34 +2,18 @@
 
 import React from 'react'
 import { DataSection } from './_components/DataSection'
-import { useAppCtx } from '~/contexts/app'
 import { CurrentRoleBadge } from '../_components/CurrentRoleBadge'
-import { useToUpdateRole } from '../_hooks/useToUpdateRole'
 
 const ResumeAnalysis = () => {
-  const { state } = useAppCtx()
-  const { resume } = state
-  // const { parsedText, role } = resume
-
-  // const {selectedRole, setSelectedRole} = useToUpdateRole();
-
-  // console.log(parsedText, "parsed text", state)
-
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-20">
       <h1 className="text-6xl font-bold text-sidebar-accent-foreground">Resume Analysis</h1>
 
-      <CurrentRoleBadge 
-        // selectedRole={selectedRole} setSelectedRole={setSelectedRole} 
-      />
-
-      {/* <h2 className='text-2xl mt-20 font-bold'>Role: {role}</h2> */}
+      <CurrentRoleBadge />
 
       <br />
       <br />
-      <DataSection 
-        // pdfText={parsedText} 
-      />
+      <DataSection  />
     </main>
   )
 }

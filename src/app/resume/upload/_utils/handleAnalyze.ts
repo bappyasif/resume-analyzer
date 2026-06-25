@@ -37,9 +37,8 @@ export const handleAnalyze = () => {
                 {
                     onSuccess: (data) => {
                         if(state.resume.parsedText === data.text) {
-                            console.log("Same text as before, not updating state");
+                            console.log("Same pdf text as already stored in state");
                         } else {
-                            console.log("New text, updating state");
                             reset();
                             dispatch({type: "UPDATE_RESUME_PARSED_TEXT", payload: data.text})
                         }

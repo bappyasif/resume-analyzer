@@ -7,10 +7,8 @@ import type { FileWithPreview } from "~/types"
 
 export const FileDisplay = ({
     file, isUploading, removeFile,
-    // formatFileSize, getFileIcon 
 }: {
     file: FileWithPreview, isUploading: boolean, removeFile: () => void,
-    // formatFileSize: (bytes: number) => string, getFileIcon: () => React.ReactNode 
 }) => {
     const getFileIcon = () => <FileText className="h-4 w-4 text-red-600" />
 

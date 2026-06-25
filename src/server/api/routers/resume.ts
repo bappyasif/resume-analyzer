@@ -37,9 +37,7 @@ export const resumeRouter = createTRPCRouter({
     .mutation(async ({ input }) => {
       const { text, role } = input;
       const url = apiUrl + '/resume-analysis/';
-      // const url = "http://localhost:3003" + '/resume-analysis/';
 
-      console.log(url, "url using");
       try {
         const response = await fetch(url, {
           method: 'POST',
@@ -70,24 +68,6 @@ export const resumeRouter = createTRPCRouter({
           message: error instanceof Error ? error.message : "Failed to analyze resume",
         });
       }
-
-      // const response = await fetch(
-      //   url,
-      //   {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify({ text, role }),
-      //   });
-
-      // if (!response.ok) {
-      //   throw new Error(`HTTP error! status: ${response.status}`);
-      // }
-
-      // const data = await response.json();
-
-      // return data;
     }),
   feedback: publicProcedure
     .input(extractDetailsInput)
@@ -96,8 +76,6 @@ export const resumeRouter = createTRPCRouter({
       const { text, role } = input;
 
       const url = apiUrl + '/resume-feedback';
-
-      console.log(url, "url using");
 
       try {
         const response = await fetch(
@@ -132,23 +110,5 @@ export const resumeRouter = createTRPCRouter({
           message: error instanceof Error ? error.message : "Failed to analyze resume",
         });
       }
-
-      // const response = await fetch(
-      //   url,
-      //   {
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'application/json',
-      //     },
-      //     body: JSON.stringify({ text, role }),
-      //   });
-
-      // if (!response.ok) {
-      //   throw new Error(`HTTP error! status: ${response.status}`);
-      // }
-
-      // const data = await response.json();
-
-      // return data;
     }),
 })

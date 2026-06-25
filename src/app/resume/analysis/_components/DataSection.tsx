@@ -14,7 +14,6 @@ export const DataSection = (
     const { resume } = state;
     const { analysis } = resume;
 
-    // const { data, error, isPending } = useToResumeDataExtraction(pdfText);
     const { data, error, isPending } = useToResumeDataExtraction();
 
     return (
@@ -148,9 +147,6 @@ export const DataSection = (
                 </div>
             ) : (
                 null
-                // pdfText && (
-                //     <p>No details extracted yet</p>
-                // )
             )}
 
             {
